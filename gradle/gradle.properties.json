@@ -1,0 +1,402 @@
+{
+    "properties": {
+        "systemProp.file.encoding": {
+           "key": "systemProp.file.encoding",
+           "defaultValue": "UTF-8",
+           "allowedValues": ["ISO-8859-1","US-ASCII","UTF-8", "UTF-16", "windows-1252"],
+           "versionRequirements": {
+           },
+           "valueType": "STRING"
+        },
+        "systemProp.user.country": {
+            "key": "systemProp.user.country",
+            "defaultValue": "US",
+            "allowedValues": ["AU","BR","CA","CN","DE","FR","JP","IN","NL","US"],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "apache.commons.compress.version": {
+            "key": "apache.commons.compress.version",
+            "defaultValue": "1.27.1",
+            "allowedValues": [],
+            "versionRequirements": {
+                "strictly": "1.27.1"
+            },
+            "valueType": "VERSION"
+        },
+        "apache.commons.io": {
+            "key": "apache.commons.io",
+            "defaultValue": "2.18.0",
+            "allowedValues": [],
+            "versionRequirements": {
+                "strictly": "2.18.0"
+            },
+            "valueType": "VERSION"
+        },
+        "fasterxml.jackson.core.version": {
+            "key": "fasterxml.jackson.core.version",
+            "defaultValue": "2.15.0-rc1",
+            "allowedValues": [],
+            "versionRequirements": {
+                "strictly": "2.15.0-rc1"
+            },
+            "valueType": "VERSION"
+        },
+        "fasterxml.woodstox.core.version": {
+            "key": "fasterxml.woodstox.core.version",
+            "defaultValue": "6.4.0",
+            "allowedValues": [],
+            "versionRequirements": {
+                "strictly": "6.4.0"
+            },
+            "valueType": "VERSION"
+        },
+        "org.gradle.dependency.verification": {
+            "key": "org.gradle.dependency.verification",
+            "defaultValue": "strict",
+            "allowedValues": ["lenient","off","strict"],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "org.gradle.vfs.watch": {
+            "key": "org.gradle.vfs.watch",
+            "defaultValue": "true",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
+        "org.gradle.buildscan.legal.terms.of.use.automatic.acceptance": {
+            "key": "org.gradle.buildscan.legal.terms.of.use.automatic.acceptance",
+            "defaultValue": "yes",
+            "allowedValues": ["no","yes"],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "org.gradle.buildscan.legal.terms.of.use.url": {
+            "key": "org.gradle.buildscan.legal.terms.of.use.url",
+            "defaultValue": "https://gradle.com/help/legal-terms-of-use",
+            "allowedValues": ["https://gradle.com/help/legal-terms-of-use"],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "org.gradle.develocity": {
+            "key": "org.gradle.develocity",
+            "defaultValue": "4.0.1",
+            "allowedValues": [],
+            "versionRequirements": {
+                "require": "[4.0.1,)",
+                "prefer": "4.0.1"
+            },
+            "valueType": "VERSION"
+        },
+        "org.gradle.buildscan.upload.in.background": {
+            "key": "org.gradle.buildscan.upload.in.background",
+            "defaultValue": "true",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
+        "org.gradle.caching": {
+            "key": "org.gradle.caching",
+            "defaultValue": "true",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
+        "org.gradle.configuration-cache": {
+            "key": "org.gradle.configuration-cache",
+            "defaultValue": "true",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
+        "org.gradle.configuration-cache.parallel": {
+            "key": "org.gradle.configuration-cache.parallel",
+            "defaultValue": "true",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
+        "org.gradle.configuration-cache-problems": {
+            "key": "org.gradle.configuration-cache-problems",
+            "defaultValue": "warn",
+            "allowedValues": ["fail", "silent","warn"],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "org.gradle.toolchains.foojay.resolver.convention": {
+            "key": "org.gradle.toolchains.foojay.resolver.convention",
+            "defaultValue": "1.0.0",
+            "allowedValues": [],
+            "versionRequirements": {
+                "require": "[1.0.0,)",
+                "prefer": "1.0.0"
+            },
+            "valueType": "VERSION"
+        },
+        "org.gradle.jvm.version": {
+            "key": "org.gradle.jvm.version",
+            "defaultValue": "21",
+            "allowedValues": [],
+            "versionRequirements": {
+                "strictly": "[20, 24]",
+                "prefer": "21"
+            },
+            "valueType": "INTEGER"
+        },
+        "org.gradle.jvmargs.country": {
+            "key": "org.gradle.jvmargs.country",
+            "defaultValue": "-Duser.country=US",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "org.gradle.jvmargs.encoding": {
+            "key": "org.gradle.jvmargs.encoding",
+            "defaultValue": "-Dfile.encoding=UTF-8",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "org.gradle.jvmargs.language": {
+            "key": "org.gradle.jvmargs.language",
+            "defaultValue": "-Duser.language=en",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "org.gradle.jvmargs.max.metaspace.size": {
+            "key": "org.gradle.jvmargs.max.metaspace.size",
+            "defaultValue": "-XX:MaxMetaspaceSize=2g",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "org.gradle.jvmargs.memory": {
+            "key": "org.gradle.jvmargs.memory",
+            "defaultValue": "-Xmx2048M",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "org.gradle.jvmargs.out.of.memory": {
+            "key": "org.gradle.jvmargs.out.of.memory",
+            "defaultValue": "-XX:+HeapDumpOnOutOfMemoryError",
+            "allowedValues": ["-XX:+HeapDumpOnOutOfMemoryError"],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "org.gradle.jvmargs.parallel.gc": {
+            "key": "org.gradle.jvmargs.parallel.gc",
+            "defaultValue": "-XX:-UseParallelGC",
+            "allowedValues": [ "-XX:-UseParallelGC"],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "org.gradle.parallel": {
+            "key": "org.gradle.parallel",
+            "defaultValue": "true",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
+        "org.gradle.jvmargs.pre.touch": {
+            "key": "org.gradle.jvmargs.pre.touch",
+            "defaultValue": "-XX:+AlwaysPreTouch",
+            "allowedValues": ["-XX:+AlwaysPreTouch"],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "org.gradle.kotlin.dsl.allWarningsAsErrors": {
+            "key": "org.gradle.kotlin.dsl.allWarningsAsErrors",
+            "defaultValue": "true",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
+        "org.gradle.kotlin.dsl.skipMetadataVersionCheck": {
+            "key": "org.gradle.kotlin.dsl.skipMetadataVersionCheck",
+            "defaultValue": "false",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
+        "kmpbuildlogic.properties.build.number": {
+            "key": "kmpbuildlogic.properties.build.number",
+            "defaultValue": "2025.05.27.01",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "kmpbuildlogic.properties.consent.decision.gradle.property": {
+            "key": "kmpbuildlogic.properties.consent.decision.gradle.property",
+            "defaultValue": "false",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
+        "kmpbuildlogic.properties.github.url": {
+            "key": "kmpbuildlogic.properties.github.url",
+            "defaultValue": "https://github.com/dickkouwenhoven/KMP-Build-Logic",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "kmpbuildlogic.properties.library.version": {
+            "key": "kmpbuildlogic.properties.library.version",
+            "defaultValue": "1.0.0",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "kmpbuildlogic.properties.local.build.cache.enabled": {
+            "key": "kmpbuildlogic.properties.local.build.cache.enabled",
+            "defaultValue": "true",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
+        "kmpbuildlogic.properties.local.build.cache.path": {
+            "key": "kmpbuildlogic.properties.local.build.cache.path",
+            "defaultValue": "./build/cache",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "kmpbuildlogic.properties.maven.local.directory": {
+            "key": "kmpbuildlogic.properties.maven.local.directory",
+            "defaultValue": ".m2",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "kmpbuildlogic.properties.package.name": {
+            "key": "kmpbuildlogic.properties.package.name",
+            "defaultValue": "io.github.dickkouwenhoven.kmpbuildlogic",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "kmpbuildlogic.properties.root.project.build.file.name": {
+            "key": "kmpbuildlogic.properties.root.project.build.file.name",
+            "defaultValue": "build.gradle.kts",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "kmpbuildlogic.properties.root.project.name": {
+            "key": "kmpbuildlogic.properties.root.project.name",
+            "defaultValue": "KMP-Build-Logic",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "kmpbuildlogic.properties.version.profile": {
+            "key": "kmpbuildlogic.properties.version.profile",
+            "defaultValue": "ga",
+            "allowedValues": ["alpha", "beta", "ga", "rc"],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "kmpbuildlogic.properties.version.code": {
+            "key": "kmpbuildlogic.properties.version.code",
+            "defaultValue": "1",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "INTEGER"
+        },
+        "kotlin.code.style": {
+            "key": "kotlin.code.style",
+            "defaultValue": "official",
+            "allowedValues": ["obsolete","official"],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "kotlin.jvm.target.validation.mode": {
+            "key": "kotlin.jvm.target.validation.mode",
+            "defaultValue": "error",
+            "allowedValues": ["disabled","error", "warning"],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "kotlin.language.version": {
+            "key": "kotlin.language.version",
+            "defaultValue": "2.1.21",
+            "allowedValues": [],
+            "versionRequirements": {
+                "require": "[1.8.10, 2.1.21[",
+                "prefer": "2.1.21"
+            },
+            "valueType": "VERSION"
+        },
+        "kotlin.suppressUnsupportedPluginWarning": {
+            "key": "kotlin.suppressUnsupportedPluginWarning",
+            "defaultValue": "true",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
+        "org.jetbrains.dokka.experimental.gradle.pluginMode": {
+            "key": "org.jetbrains.dokka.experimental.gradle.pluginMode",
+            "defaultValue": "V2Enabled",
+            "allowedValues": ["V2Enabled"],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "org.jetbrains.dokka.experimental.gradle.pluginMode.noWarn": {
+            "key": "org.jetbrains.dokka.experimental.gradle.pluginMode.noWarn",
+            "defaultValue": "true",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
+        "de.undercouch.download.version": {
+            "key": "de.undercouch.download.version",
+            "defaultValue": "5.6.0",
+            "allowedValues": [],
+            "versionRequirements": {
+                "require": "[4.0.1,)",
+                "prefer": "4.0.1"
+            },
+            "valueType": "VERSION"
+        }
+    }
+}
