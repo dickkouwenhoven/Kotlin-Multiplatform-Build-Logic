@@ -18,7 +18,7 @@ jetbrainsKotlinVersion                = "2.0.21"
 jetbrainsKotlinxSerializationVersion  = "1.8.1"
 
 # https://github.com/junit-team/junit5/releases
-junitVersion                          = "5.12.2"
+junitVersion                          = "5.13.2"
 
 # https://github.com/semver4j/semver4j/releases
 semver4jVersion                       = "5.7.1"
