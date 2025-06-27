@@ -110,6 +110,14 @@
             },
             "valueType": "BOOLEAN"
         },
+        "org.gradle.caching.debug": {
+            "key": "org.gradle.caching.debug",
+            "defaultValue": "false",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
         "org.gradle.configuration-cache": {
             "key": "org.gradle.configuration-cache",
             "defaultValue": "true",
