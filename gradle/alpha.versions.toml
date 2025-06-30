@@ -1,0 +1,59 @@
+[versions]
+# https://github.com/adamko-dev/dokkatoo/releases
+devAdamkoDokkatooVersion              = "2.4.0"
+
+# https://github.com/google/gson/releases
+googleCodeGsonVersion                 = "2.13.1"
+
+# https://github.com/gradle/foojay-toolchains/tags
+gradleToolchainsFoojayResolverVersion = "1.0.0"
+
+# https://github.com/Kotlin/dokka/releases
+jetbrainsDokkaVersion                 = "2.0.0" 
+
+# https://github.com/JetBrains/kotlin/releases
+jetbrainsKotlinVersion                = "2.2.0"
+
+# https://github.com/Kotlin/kotlinx.serialization/releases
+jetbrainsKotlinxSerializationVersion  = "1.8.1"
+
+# https://github.com/junit-team/junit5/releases
+junitVersion                          = "5.13.2"
+
+# https://github.com/semver4j/semver4j/releases
+semver4jVersion                       = "5.8.0"
+
+[libraries]
+devAdamkoDokkatooPlugin               = { module = "dev.adamko.dokkatoo:dokkatoo-plugin",              version.ref = "devAdamkoDokkatooVersion"              }
+googleCodeGson                        = { module = "com.google.code.gson:gson",                        version.ref = "googleCodeGsonVersion"                 } 
+gradleToolchainsFoojayResolver        = { module = "org.gradle.toolchains:foojay-resolver",            version.ref = "gradleToolchainsFoojayResolverVersion" }
+jetbrainsDokkaAllModulesPagePlugin    = { module = "org.jetbrains.dokka:all-modules-page-plugin",      version.ref = "jetbrainsDokkaVersion"                 }
+jetbrainsDokkaVersioningPlugin        = { module = "org.jetbrains.dokka:versioning-plugin",            version.ref = "jetbrainsDokkaVersion"                 }
+jetbrainsKotlinGradlePlugin           = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin",        version.ref = "jetbrainsKotlinVersion"                }
+jetbrainsKotlinGradlePluginApi        = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin-api",    version.ref = "jetbrainsKotlinVersion"                }
+jetbrainsKotlinTest                   = { module = "org.jetbrains.kotlin:kotlin-test",                 version.ref = "jetbrainsKotlinVersion"                }
+jetbrainsKotlinTestJunit5             = { module = "org.jetbrains.kotlin:kotlin-test-junit5",          version.ref = "jetbrainsKotlinVersion"                }
+jetbrainsKotlinxSerializationJson     = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "jetbrainsKotlinxSerializationVersion"  }
+junitBom                              = { module = "org.junit:junit-bom",                              version.ref = "junitVersion"                          }
+junitJupiterApi                       = { module = "org.junit.jupiter:junit-jupiter-api",              version.ref = "junitVersion"                          }
+junitJupiterEngine                    = { module = "org.junit.jupiter:junit-jupiter-engine",           version.ref = "junitVersion"                          }
+junitJupiterParams                    = { module = "org.junit.jupiter:junit-jupiter-params",           version.ref = "junitVersion"                          }
+semver4j                              = { module = "org.semver4j:semver4j",                            version.ref = "semver4jVersion"                       }
+
+[plugins]
+jetbrainsKotlinJvm                    = { id     = "org.jetbrains.kotlin.jvm",                         version.ref = "jetbrainsKotlinVersion"                }
+jetbrainsKotlinPluginSerialization    = { id     = "org.jetbrains.kotlin.plugin.serialization",        version.ref = "jetbrainsKotlinVersion"                }
+
+# Plugins defined by this project
+daemonConfigConventionPlugin          = { id     = "daemon.config.convention.plugin",                  version     = "unspecified"                           }
+dokkatooConventionPlugin              = { id     = "dokkatoo-convention.plugin",                       version     = "unspecified"                           }
+jvmToolchainConventionPlugin          = { id     = "jvm.toolchain.convention.plugin",                  version     = "unspecified"                           }
+jvmToolchainEvaluationPlugin          = { id     = "jvm.toolchain.evaluate.convention.plugin",         version     = "unspecified"                           }
+kmpBuildLogicProjectPlugin            = { id     = "kmpbuildlogic.project.convention.plugin",          version     = "unspecified"                           }
+kmpBuildLogicPropertiesPlugin         = { id     = "kmpbuildlogic.properties.convention.plugin",       version     = "unspecified"                           }
+kmpBuildLogicSettingsPlugin           = { id     = "kmpbuildlogic.settings.convention.plugin",         version     = "unspecified"                           }
+versionCatalogProfilePlugin           = { id     = "version.catalog.profile.convention.plugin",        version     = "unspecified"                           }
+
+[bundles]
+kmpBuildLogicSharedLibraries          = ["devAdamkoDokkatooPlugin"]
+
