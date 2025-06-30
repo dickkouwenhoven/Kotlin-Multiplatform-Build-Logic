@@ -12,7 +12,7 @@ gradleToolchainsFoojayResolverVersion = "1.0.0"
 jetbrainsDokkaVersion                 = "2.0.0" 
 
 # https://github.com/JetBrains/kotlin/releases
-jetbrainsKotlinVersion                = "2.0.21"
+jetbrainsKotlinVersion                = "2.2.0"
 
 # https://github.com/Kotlin/kotlinx.serialization/releases
 jetbrainsKotlinxSerializationVersion  = "1.8.1"
