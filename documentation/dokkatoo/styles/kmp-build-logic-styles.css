@@ -1,0 +1,73 @@
+/*
+ * Copyright 2022 Dick Kouwenhoven
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * All Margins and sizes are custom for the kmp-build-logic-logo.png file.
+ * You may want to override it and find what works best for your case.
+ */
+
+/* --- root styles --- */
+:root {
+    --dokka-logo-image-url: url('http://localhost:9000/kmp-build-logic-logo.png');
+    --dokka-logo-height: 90px;
+    --dokka-logo-width: 90px;
+}
+
+/* Footer */
+/* Footer background filled with logo which is shown partly and repeatedly */
+.footer {
+    background: var(--dokka-logo-image-url);
+    background-repeat: repeat-x;
+    background-size: 425px;
+    min-height: 150px;
+    position: relative;
+}
+
+/* Footer: Arrow hyperlink icon configuration */
+.footer--link_external::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    margin-left: 4px;
+    margin-right: var(--horizontal-spacing-for-content);
+    background-image: url("http://localhost:9000/footer-go-to-link.svg");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+/* Footer: Alignment of the footer text in relation to the background image */
+.footer .pull-right {
+    margin-left: auto;
+    margin-right: 120px;
+}
+
+/* logo custom rules styles */
+.library-name--link::before {
+    content: '';
+    background-image: var(--dokka-logo-image-url);
+    background-position: left;
+    background-size: min(var(--dokka-logo-height),120px)
+        min(var(--dokka-logo-width),120px);
+    height: var(--dokka-logo-height);
+    width: var(--dokka-logo-width);
+    max-height: 120px;
+    max-width: 120px;
+}
+
+.sidebar--inner {
+    padding-left: 12px;
+}
+
