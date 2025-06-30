@@ -354,6 +354,14 @@
             },
             "valueType": "STRING"
         },
+        "kotlin.dsl.skip.version.check": {
+            "key": "kotlin.dsl.skip.version.check",
+            "defaultValue": "false",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
         "kotlin.jvm.target.validation.mode": {
             "key": "kotlin.jvm.target.validation.mode",
             "defaultValue": "error",
