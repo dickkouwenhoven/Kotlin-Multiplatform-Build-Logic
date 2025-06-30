@@ -375,7 +375,7 @@
             "defaultValue": "2.1.21",
             "allowedValues": [],
             "versionRequirements": {
-                "require": "[1.8.10, 2.1.21[",
+                "require": "[1.8.10, 2.2.0[",
                 "prefer": "2.1.21"
             },
             "valueType": "VERSION"
