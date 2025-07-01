@@ -1,0 +1,137 @@
+#
+# https://help.github.com/articles/dealing-with-line-endings/
+#
+
+# *************************************
+# **       Crf and lf Settings       **
+# *************************************
+
+# The default value is to use lf
+*                         text=auto eol=lf
+
+# Linux start script should use lf
+/gradlew                  text eol=lf
+
+# These are Windows script files and should use crlf
+*.bat                     text eol=crlf
+gradlew.bat               eol=crlf
+
+# These files are text and should be normalized
+*.bash                    text eol=lf
+*.css                     text diff=css
+*.htm                     text diff=html
+*.html                    text diff=html
+*.java                    text diff=java
+*.sh                      text eol=lf
+
+# *************************************
+# **          Binary files           **
+# *************************************
+
+*.a                       binary
+*.bin                     binary
+*.fla                     binary
+*.flv                     binary
+*.gif                     binary
+*.gpg                     binary
+*.gz                      binary
+*.icons                   binary
+*.ico                     binary
+*.jar                     binary
+*.jpg                     binary
+*.jpeg                    binary
+*.lib                     binary
+*.mov                     binary
+*.mp3                     binary
+*.mp4                     binary
+*.png                     binary
+*.pyc                     binary
+*.swf                     binary
+*.tar                     binary
+*.tar.gz                  binary
+*.ttf                     binary
+*.zip                     binary
+*.7z                      binary
+
+
+# *************************************
+# **     Compiler files Settings     **
+# *************************************
+
+compiler/cli/bin/*        eol=lf
+compiler/cli/bin/*.bat    eol=crlf
+compiler/testData/**      eol=auto
+
+# *************************************
+# ** Vendored files and directories  **
+# ** are excluded from language      **
+# ** statistics                      **
+# *************************************
+
+# Force to exclude .fleet from language statistics
+.fleet/**                 linguist-vendored
+
+# Force to exclude .github from language statistics
+.github/**                linguist-vendored
+
+# Force to exclude .gradle from language statistics
+.gradle/**                linguist-vendored
+
+# Force to exclude .idea from language statistics
+.idea/**                  linguist-vendored
+
+# Force to exclude build directory from language statistics
+(^|/)build/**             linguist-vendored
+
+# Force git config files from language statistics
+(^|/)\.gitattributes$     linguist-vendored
+(^|/)\.gitignore$         linguist-vendored
+(^|/)\.gitmodules$        linguist-vendored
+
+# Force gradle config files from language statistics
+(^|/)gradlew$             linguist-vendored
+(^|/)gradlew\.bat$        linguist-vendored
+(^|/)gradle/wrapper/      linguist-vendored
+
+# Force html files from language statistics
+*.html                    linguist-vendored
+
+# Force jar files from language statistics
+*.jar                     linguist-vendored
+
+# Force generated.java from language statistics
+*Generated.java           linguist-generated=true
+
+# Force testData from language statistics
+**/testData/**            linguist-vendored
+
+# *************************************
+# ** Map file extensions to a        **
+# ** programming language to ensure  **
+# ** the language statistics are     **
+# ** reflecting correctly.           **
+# *************************************
+
+*.bat                     linguist-language=Batchfile
+*.conf                    linguist-language=XML Property List
+*.editorconfig            linguist-language=EditorConfig
+*.gitignore               linguist-language=Git Attributes
+*.gradle                  linguist-language=Gradle
+*.jar                     linguist-language=Java
+*.klib_abi.txt            linguist-language=Kotlin
+*.kt                      linguist-language=Kotlin
+*.kt.txt                  linguist-language=Kotlin
+*.ktm                     linguist-language=Kotlin
+*.kts                     linguist-language=Kotlin
+*.lock                    linguist-language=Gradle
+*.md                      linguist-language=Markdown
+*.MF                      linguist-language=JAR Manifest
+*.name                    linguist-language=JetBrains MPS
+*.probe                   linguist-language=Gradle
+*.properties              linguist-language=Gradle
+*.json                    linguist-language=JSON
+*.toml                    linguist-language=TOML
+*.txt                     linguist-language=TEXT
+*.yml                     linguist-language=YAML
+*.xml                     linguist-language=XML
+pom.xml                   linguist-language=Maven POM
