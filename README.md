@@ -32,7 +32,7 @@ A publish plugin enables users to publish their kotlin multi platform libraries 
 [android-studio-url]: https://developer.android.com/studio
 [apache-license-shield]: https://img.shields.io/badge/license-Apache_License_2.0-282661?logo=apachemaven
 [apache-license-url]: https://www.apache.org/licenses/LICENSE-2.0.html
-[gradle-version-shield]: [https://img.shields.io/badge/gradle-Version_9.0.0-rc3-209BC4?logo=gradle]
+[gradle-version-shield]: https://img.shields.io/badge/gradle-Version_9.0.0-rc3-209BC4?logo=gradle
 [gradle-version-url]: https://gradle.org/
 [jetbrains-fleet-shield]: https://img.shields.io/badge/Fleet-1.46.97-5b277d?logo=jetbrains
 [jetbrains-fleet-url]: https://www.jetbrains.com/fleet/
