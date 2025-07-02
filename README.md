@@ -11,7 +11,7 @@
     <h1>
         <p>
             <br>
-                <img src="documentation/dokkatoo/images/kmp-build-logic-logo.png" style="text-align: left" width="129" height="83" alt="Kmp Build Logic Logo">Kotlin Multiplatform Build Logic
+                <img src="documentation/dokkatoo/images/kmp-build-logic-logo.png" style="text-align: left" width="43" height="28" alt="Kmp Build Logic Logo">Kotlin Multiplatform Build Logic
             <br>                
         </p>
     </h1>    
