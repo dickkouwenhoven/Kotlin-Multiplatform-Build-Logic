@@ -12,7 +12,7 @@ Library that contains usefull build logic settings for KMP projects
         <h1>
             <p>
                 <br>
-                    Kmp Build Logic Properties Gradle Plugin
+                    Kotlin Multiplatforn Build Logic
                 <br>                
             </p>
         </h1>    
