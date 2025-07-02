@@ -5,14 +5,7 @@
 [![Kotlin Multiplatform Build Logic Documentation][kotlin-multiplatform-build-logic-documentation-shield]][kotlin-multiplatform-build-logic-documentation-url]
 <div align="center">
     <!--suppress CheckImageSize -->
-    <img src="documentation/dokkatoo/images/kmp-build-logic-logo.png" style="text-align: center" width="386" height="250" alt="Kmp Build Logic Logo">
-        <h1>
-            <p>
-                <br>
-                    Kotlin Multiplatform Build Logic
-                <br>                
-            </p>
-        </h1>    
+    <img src="documentation/dokkatoo/images/kmp-build-logic-logo.png" style="text-align: center" width="386" height="250" alt="Kmp Build Logic Logo">        
 </div>
 <div align="left">
     <h1>
