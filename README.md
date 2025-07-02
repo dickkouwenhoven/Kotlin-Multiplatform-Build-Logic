@@ -9,7 +9,7 @@
         <h1>
             <p>
                 <br>
-                    Kotlin Multiplatforn Build Logic
+                    Kotlin Multiplatform Build Logic
                 <br>                
             </p>
         </h1>    
