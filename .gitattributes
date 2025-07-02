@@ -7,22 +7,22 @@
 # *************************************
 
 # The default value is to use lf
-*                         text=auto eol=lf
+*                         text               = auto eol = lf
 
 # Linux start script should use lf
-/gradlew                  text eol=lf
+/gradlew                  text eol           = lf
 
 # These are Windows script files and should use crlf
-*.bat                     text eol=crlf
-gradlew.bat               eol=crlf
+*.bat                     text eol           = crlf
+gradlew.bat               eol                = crlf
 
 # These files are text and should be normalized
-*.bash                    text eol=lf
-*.css                     text diff=css
-*.htm                     text diff=html
-*.html                    text diff=html
-*.java                    text diff=java
-*.sh                      text eol=lf
+*.bash                    text eol           = lf
+*.css                     text diff          = css
+*.htm                     text diff          = html
+*.html                    text diff          = html
+*.java                    text diff          = java
+*.sh                      text eol           = lf
 
 # *************************************
 # **          Binary files           **
@@ -58,9 +58,9 @@ gradlew.bat               eol=crlf
 # **     Compiler files Settings     **
 # *************************************
 
-compiler/cli/bin/*        eol=lf
-compiler/cli/bin/*.bat    eol=crlf
-compiler/testData/**      eol=auto
+compiler/cli/bin/*        eol                = lf
+compiler/cli/bin/*.bat    eol                = crlf
+compiler/testData/**      eol                = auto
 
 # *************************************
 # ** Vendored files and directories  **
@@ -100,7 +100,7 @@ compiler/testData/**      eol=auto
 *.jar                     linguist-vendored
 
 # Force generated.java from language statistics
-*Generated.java           linguist-generated=true
+*Generated.java           linguist-generated = true
 
 # Force testData from language statistics
 **/testData/**            linguist-vendored
@@ -112,26 +112,26 @@ compiler/testData/**      eol=auto
 # ** reflecting correctly.           **
 # *************************************
 
-*.bat                     linguist-language=Batchfile
-*.conf                    linguist-language=XML Property List
-*.editorconfig            linguist-language=EditorConfig
-*.gitignore               linguist-language=Git Attributes
-*.gradle                  linguist-language=Gradle
-*.jar                     linguist-language=Java
-*.klib_abi.txt            linguist-language=Kotlin
-*.kt                      linguist-language=Kotlin
-*.kt.txt                  linguist-language=Kotlin
-*.ktm                     linguist-language=Kotlin
-*.kts                     linguist-language=Kotlin
-*.lock                    linguist-language=Gradle
-*.md                      linguist-language=Markdown
-*.MF                      linguist-language=JAR Manifest
-*.name                    linguist-language=JetBrains MPS
-*.probe                   linguist-language=Gradle
-*.properties              linguist-language=Gradle
-*.json                    linguist-language=JSON
-*.toml                    linguist-language=TOML
-*.txt                     linguist-language=TEXT
-*.yml                     linguist-language=YAML
-*.xml                     linguist-language=XML
-pom.xml                   linguist-language=Maven POM
+*.bat                     linguist-language  = Batchfile
+*.conf                    linguist-language  = XML Property List
+*.editorconfig            linguist-language  = EditorConfig
+*.gitignore               linguist-language  = Git Attributes
+*.gradle                  linguist-language  = Gradle
+*.jar                     linguist-language  = Java
+*.klib_abi.txt            linguist-language  = Kotlin
+*.kt                      linguist-language  = Kotlin
+*.kt.txt                  linguist-language  = Kotlin
+*.ktm                     linguist-language  = Kotlin
+*.kts                     linguist-language  = Kotlin
+*.lock                    linguist-language  = Gradle
+*.md                      linguist-language  = Markdown
+*.MF                      linguist-language  = JAR Manifest
+*.name                    linguist-language  = JetBrains MPS
+*.probe                   linguist-language  = Gradle
+*.properties              linguist-language  = Gradle
+*.json                    linguist-language  = JSON
+*.toml                    linguist-language  = TOML
+*.txt                     linguist-language  = TEXT
+*.yml                     linguist-language  = YAML
+*.xml                     linguist-language  = XML
+pom.xml                   linguist-language  = Maven POM
