@@ -1,14 +1,3 @@
-<div align="center">
-    <!--suppress CheckImageSize -->
-    <img src="documentation/dokkatoo/images/kmp-build-logic-logo.png" style="text-align: center" width="386" height="250" alt="Kmp Build Logic Logo">
-        <h1>
-            <p>
-                <br>
-                    Kotlin Multiplatform Build Logic
-                <br>                
-            </p>
-        </h1>    
-</div>
 [![Apache License][apache-license-shield]][apache-license-url]
 [![Gradle Version][gradle-version-shield]][gradle-version-url]
 [![Kotlin Version][kotlin-version-shield]][kotlin-version-url]
