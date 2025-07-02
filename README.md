@@ -1,11 +1,8 @@
-# Kotlin-Multiplatform-Build-Logic
-Library that contains usefull build logic settings for KMP projects
-
 [![Apache License][apache-license-shield]][apache-license-url]
 [![Gradle Version][gradle-version-shield]][gradle-version-url]
 [![Kotlin Version][kotlin-version-shield]][kotlin-version-url]
-[![Kmp Build Logic Properties Gradle Plugin Version][kmp-build-logic-properties-gradle-plugin-version-shield]][kmp-build-logic-properties-gradle-plugin-version-url]
-[![Kmp Build Logic Properties Gradle Plugin Documentation][kmp-build-logic-properties-gradle-plugin-documentation-shield]][kmp-build-logic-properties-gradle-plugin-documentation-url]
+[![Kotlin Multiplatform Version][kotlin-multiplatform-version-shield]][kotlin-multiplatoform-version-url]
+[![Kotlin Multiplatoiform Build Logic Documentation][kotlin-multiplatform-build-logic-documentation-shield]][kotlin-multiplatform-build-logic-documentation-url]
 <div style="text-align: left;">
     <!--suppress CheckImageSize -->
 <img src="images/kmp-build-logic-properties-gradle-plugin-logo.png" style="text-align: right" width="386" height="250" alt="Kmp Build Logic Logo">
@@ -24,7 +21,7 @@ Library that contains usefull build logic settings for KMP projects
 
 
 Welcome to:
-
+Library that contains usefull build logic settings for KMP projects
 This plugin enables users to publish their kotlin multi platform libraries to the following repositories:
 - Gradle Plugin Portal
 - Maven Central Repository (Central Portal)
