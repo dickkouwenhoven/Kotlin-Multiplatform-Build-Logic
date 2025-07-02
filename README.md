@@ -28,7 +28,7 @@ A publish plugin enables users to publish their kotlin multi platform libraries 
 - Maven Central Repository (Central Portal)
 - Maven Local
 
-[android-studio-shield]: https://img.shields.io/badge/androidstudio-Meerkat_2024.3.1-333333?logo=androidstudio
+[android-studio-shield]: https://img.shields.io/badge/androidstudio-Narwhal_2025.1.1-333333?logo=androidstudio
 [android-studio-url]: https://developer.android.com/studio
 [apache-license-shield]: https://img.shields.io/badge/license-Apache_License_2.0-282661?logo=apachemaven
 [apache-license-url]: https://www.apache.org/licenses/LICENSE-2.0.html
