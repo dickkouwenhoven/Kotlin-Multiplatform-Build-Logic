@@ -1,8 +1,8 @@
 [![Apache License][apache-license-shield]][apache-license-url]
 [![Gradle Version][gradle-version-shield]][gradle-version-url]
 [![Kotlin Version][kotlin-version-shield]][kotlin-version-url]
-[![Kotlin Multiplatform Version][kotlin-multiplatform-version-shield]][kotlin-multiplatoform-build-logic-version-url]
-[![Kotlin Multiplatoiform Build Logic Documentation][kotlin-multiplatform-build-logic-documentation-shield]][kotlin-multiplatform-build-logic-documentation-url]
+[![Kotlin Multiplatform Build Logic Version][kotlin-multiplatform-build-logic-version-shield]][kotlin-multiplatform-build-logic-version-url]
+[![Kotlin Multiplatform Build Logic Documentation][kotlin-multiplatform-build-logic-documentation-shield]][kotlin-multiplatform-build-logic-documentation-url]
 <div style="text-align: left;">
     <!--suppress CheckImageSize -->
 <img src="images/kmp-build-logic-properties-gradle-plugin-logo.png" style="text-align: right" width="386" height="250" alt="Kmp Build Logic Logo">
