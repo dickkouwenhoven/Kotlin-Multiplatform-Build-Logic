@@ -3,19 +3,17 @@
 [![Kotlin Version][kotlin-version-shield]][kotlin-version-url]
 [![Kotlin Multiplatform Build Logic Version][kotlin-multiplatform-build-logic-version-shield]][kotlin-multiplatform-build-logic-version-url]
 [![Kotlin Multiplatform Build Logic Documentation][kotlin-multiplatform-build-logic-documentation-shield]][kotlin-multiplatform-build-logic-documentation-url]
-<div align="center">
+<div align-text="left", align-image="center">
     <!--suppress CheckImageSize -->
-    <img src="documentation/dokkatoo/images/kmp-build-logic-logo.png" style="text-align: center" width="386" height="250" alt="Kmp Build Logic Logo">        
-</div>
-<div align="left">
+    <img src="documentation/dokkatoo/images/kmp-build-logic-logo.png" style="text-align: center" width="386" height="250" alt="Kmp Build Logic Logo">
     <h1>
         <p>
             <br>
                 Kotlin Multiplatform Build Logic
             <br>                
         </p>
-    </h1>    
-</div>    
+    </h1>   
+</div>
 [![Android Studio][android-studio-shield]][android-studio-url]
 [![Jetbrains Fleet][jetbrains-fleet-shield]][jetbrains-fleet-url]
 [![Jetbrains IntelliJ IDEA][jetbrains-intellij-idea-shield]][jetbrains-intellij-idea-url]
