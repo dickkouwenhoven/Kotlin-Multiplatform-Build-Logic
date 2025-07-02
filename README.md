@@ -34,9 +34,9 @@ A publish plugin enables users to publish their kotlin multi platform libraries 
 [apache-license-url]: https://www.apache.org/licenses/LICENSE-2.0.html
 [gradle-version-shield]: https://img.shields.io/badge/gradle-Version_9.0.0_rc_1-209BC4?logo=gradle
 [gradle-version-url]: https://gradle.org/
-[jetbrains-fleet-shield]: https://img.shields.io/badge/Fleet-1.46.97-5b277d?logo=jetbrains
+[jetbrains-fleet-shield]: https://img.shields.io/badge/Fleet-1.48.261-5b277d?logo=jetbrains
 [jetbrains-fleet-url]: https://www.jetbrains.com/fleet/
-[jetbrains-intellij-idea-shield]: https://img.shields.io/badge/IntelliJ_IDEA-2024.3.4-152464?logo=intellijidea
+[jetbrains-intellij-idea-shield]: https://img.shields.io/badge/IntelliJ_IDEA-2025.1.3-152464?logo=intellijidea
 [jetbrains-intellij-idea-url]: https://www.jetbrains.com/idea/
 [kotlin-multiplatform-build-logic-documentation-shield]: https://img.shields.io/badge/Docs-User%20Guide-blueviolet?style=flat&logo=read-the-docs
 [kotlin-multiplatform-build-logic-documentation-url]: documentation/README.md
