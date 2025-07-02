@@ -32,7 +32,7 @@ A publish plugin enables users to publish their kotlin multi platform libraries 
 [android-studio-url]: https://developer.android.com/studio
 [apache-license-shield]: https://img.shields.io/badge/license-Apache_License_2.0-282661?logo=apachemaven
 [apache-license-url]: https://www.apache.org/licenses/LICENSE-2.0.html
-[gradle-version-shield]: https://img.shields.io/badge/gradle-Version_8.13-209BC4?logo=gradle
+[gradle-version-shield]: https://img.shields.io/badge/gradle-Version_9.0.0-rc3-209BC4?logo=gradle
 [gradle-version-url]: https://gradle.org/
 [jetbrains-fleet-shield]: https://img.shields.io/badge/Fleet-1.46.97-5b277d?logo=jetbrains
 [jetbrains-fleet-url]: https://www.jetbrains.com/fleet/
@@ -40,7 +40,7 @@ A publish plugin enables users to publish their kotlin multi platform libraries 
 [jetbrains-intellij-idea-url]: https://www.jetbrains.com/idea/
 [kotlin-multiplatform-build-logic-documentation-shield]: https://img.shields.io/badge/Docs-User%20Guide-blueviolet?style=flat&logo=read-the-docs
 [kotlin-multiplatform-build-logic-documentation-url]: documentation/README.md
-[kotlin-multiplatform-build-logic-version-shield]: https://img.shields.io/maven-central/v/com.dickkouwenhoven.kmpbuildlogic/publishingPlugin?label=KMP%20Build%20Publish%20Plugin%20Maven%20Central%20Version&link=https%3A%2F%2Fcentral.sonatype.com%2Fsearch%3Fq%3Dg%3Acom.dickkouwenhoven.kmpbuildlogic.publishingPlugin%26smo%3Dtrue
-[kmp-build-logic-properties-gradle-plugin-version-url]: https://mvnrepository.com/artifact/com.dickkouwenhoven.kmpbuildlogic.publishingPlugin
-[kotlin-version-shield]: https://img.shields.io/badge/kotlin-Version:_2.1.10-7b6abb?logo=kotlin
+[kotlin-multiplatform-build-logic-version-shield]: https://img.shields.io/maven-central/v/com.dickkouwenhoven.kmpbuildlogic?label=Kotlin%20Multiplatfrom%20Build%20Logic%20Maven%20Central%20Version&link=https%3A%2F%2Fcentral.sonatype.com%2Fsearch%3Fq%3Dg%3Acom.dickkouwenhoven.kmpbuildlogicn%26smo%3Dtrue
+[kotlin-multiplatform-build-logic-version-url]: https://mvnrepository.com/artifact/com.dickkouwenhoven.kmpbuildlogic
+[kotlin-version-shield]: https://img.shields.io/badge/kotlin-Version:_2.2.0-7b6abb?logo=kotlin
 [kotlin-version-url]: https://kotlinlang.org/
