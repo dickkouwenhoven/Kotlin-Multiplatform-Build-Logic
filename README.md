@@ -1,7 +1,7 @@
 [![Apache License][apache-license-shield]][apache-license-url]
 [![Gradle Version][gradle-version-shield]][gradle-version-url]
 [![Kotlin Version][kotlin-version-shield]][kotlin-version-url]
-[![Kotlin Multiplatform Version][kotlin-multiplatform-version-shield]][kotlin-multiplatoform-version-url]
+[![Kotlin Multiplatform Version][kotlin-multiplatform-version-shield]][kotlin-multiplatoform-build-logic-version-url]
 [![Kotlin Multiplatoiform Build Logic Documentation][kotlin-multiplatform-build-logic-documentation-shield]][kotlin-multiplatform-build-logic-documentation-url]
 <div style="text-align: left;">
     <!--suppress CheckImageSize -->
