@@ -3,7 +3,7 @@
 [![Kotlin Version][kotlin-version-shield]][kotlin-version-url]
 [![Kotlin Multiplatform Build Logic Version][kotlin-multiplatform-build-logic-version-shield]][kotlin-multiplatform-build-logic-version-url]
 [![Kotlin Multiplatform Build Logic Documentation][kotlin-multiplatform-build-logic-documentation-shield]][kotlin-multiplatform-build-logic-documentation-url]
-<div style="center">
+<div align="center">
     <!--suppress CheckImageSize -->
     <img src="documentation/dokkatoo/images/kmp-build-logic-logo.png" style="text-align: center" width="386" height="250" alt="Kmp Build Logic Logo">
         <h1>
