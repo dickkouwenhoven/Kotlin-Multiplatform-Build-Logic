@@ -25,6 +25,7 @@
 
 # Gradle files
 # Ignore Gradle build output directories
+build
 build/
 /build
 /*/build
