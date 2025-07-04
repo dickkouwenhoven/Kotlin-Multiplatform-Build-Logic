@@ -76,7 +76,14 @@ logger.info("Step 2 : plugin settings.")
  */
 plugins {
     // https://gradle.com/develocity/releases/
-    id("com.gradle.develocity") version System.getProperty("org.gradle.develocity")
+    val develocityProperty = "org.gradle.develocity"
+    val develocityVersion = when {
+        settings.providers.gradleProperty(develocityProperty).isPresent -> settings.providers.gradleProperty(develocityProperty).get()
+        settings.providers.systemProperty(develocityProperty).isPresent -> settings.providers.systemProperty(develocityProperty).get()
+        settings.providers.environmentVariable(develocityProperty).isPresent -> settings.providers.environmentVariable(develocityProperty).get()
+        else -> "4.0.2"
+    }
+    id("com.gradle.develocity") version develocityVersion
     id("kmpbuildlogic.settings.convention.plugin")
 }
 
@@ -118,10 +125,10 @@ dependencyResolutionManagement {
         // Tries to read from gradle.properties first, then falls back to environment variables.
         // The check if a value is found or not is done through '?:'.
         val gitHubUsername: String? =
-            resolveProperty("kmpbuildlogic.properties.github.username") ?: System.getenv("GITHUB_USERNAME")
-        val gitHubToken: String? = resolveProperty("kmpbuildlogic.properties.github.token") ?: System.getenv("GITHUB_TOKEN")
+            settings.providers.gradleProperty("kmpbuildlogic.properties.github.username").orNull ?: System.getenv("GITHUB_USERNAME")
+        val gitHubToken: String? = settings.providers.gradleProperty("kmpbuildlogic.properties.github.token").orNull ?: System.getenv("GITHUB_TOKEN")
         val gitHubUrl: String =
-            resolveProperty("kmpbuildlogic.properties.github.url") ?: throw IllegalArgumentException(
+            settings.providers.gradleProperty("kmpbuildlogic.properties.github.url").orNull ?: throw IllegalArgumentException(
                 "Github URL is not specified in gradle.properties",
             )
         google {
@@ -197,8 +204,8 @@ develocity {
         uploadInBackground.set(buildScanUploadInBackground.toBoolean())
         tag("CLI")
         tag(System.getProperty("os.name"))
-        value("Library Version: ", kmpbuildlogicLibraryVersion)
-        value("Build Number: ", kmpbuildlogicBuildNumber)
+        value("Library Version: ", kmpBuildLogicLibraryVersion)
+        value("Build Number: ", kmpBuildLogicBuildNumber)
     }
 }
 
