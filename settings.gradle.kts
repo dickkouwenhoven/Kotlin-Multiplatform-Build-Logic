@@ -17,7 +17,7 @@
 /**
  * What is this file?
  *
- * This is settings.gradle.kts, which initializes the Gradle environment before any builds happen. 
+ * This is settings.gradle.kts, which initializes the Gradle environment before any builds happen.
  * It is used to set up plugin repositories, apply plugins, define version catalogs, manage repositories,
  * and configure build features like build scan and build cache.
  *
@@ -36,17 +36,15 @@ logger.info("Step 1 : pluginManagement settings.")
  *
  */
 pluginManagement {
-    // need to set variable 'githubUrl' because of usage within the module 'build-logic'
     val githubUrlProperty = "kmpbuildlogic.properties.github.url"
-    val githubUrlRaw = 
+    val githubUrl =
         providers
             .gradleProperty(githubUrlProperty)
-            .orNull ?:  throw IllegalArgumentException(
-                "Github URL is not specified in gradle.properties",
+            .orNull ?: throw IllegalArgumentException(
+                "GitHub URL is not specified in gradle.properties"
             )
-    val githubUrl = githubUrlRaw
     System.setProperty(githubUrlProperty, githubUrl)
-    
+
     includeBuild("setting-logic")
     includeBuild("build-logic")
 
@@ -58,16 +56,14 @@ pluginManagement {
 
     plugins {
         // https://github.com/michel-kraemer/gradle-download-task/releases
-        val undercouchVersion = providers.gradleProperty("de.undercouch.download.version").orNull ?: "5.6.0"
-        id("de.undercouch.download") version undercouchVersion
+        id("de.undercouch.download") version System.getProperty("de.undercouch.download.version")
         // https://github.com/gradle/foojay-toolchains/tags
-        val foojayVersion = providers.gradleProperty("org.gradle.toolchains.foojay.resolver.convention").orNull ?: "1.0.0"
-        val foojayPluginNeeded = System.getProperty("foojayPluginNeeded").toBoolean()
-        if (foojayPluginNeeded) {
-            id("org.gradle.toolchains.foojay-resolver-convention") version foojayVersion
+        if (System.getProperty("foojayPluginNeeded").toBoolean()) {
+            id("org.gradle.toolchains.foojay.resolver.convention") version System
+                .getProperty("org.gradle.toolchains.foojay.resolver.convention")
         }
-        id("kmpbuildlogic.settings.convention.plugin")      
-        id("kmpbuildlogic.project.convention.plugin")        
+        id("kmpbuildlogic.settings.convention.plugin")
+        id("kmpbuildlogic.project.convention.plugin")
     }
 }
 
@@ -80,7 +76,7 @@ logger.info("Step 2 : plugin settings.")
  */
 plugins {
     // https://gradle.com/develocity/releases/
-    id("com.gradle.develocity") version "4.0.2"
+    id("com.gradle.develocity") version System.getProperty("org.gradle.develocity")
     id("kmpbuildlogic.settings.convention.plugin")
 }
 
@@ -88,12 +84,11 @@ logger.info("Step 3 : 'rootProject name' setting.")
 /**
  * RootProject name:
  *
- * - Root project name configured from properties. 
+ * - Root project name configured from properties.
  * - Root project name configured as system property. Will be part of module project name.
  *
  */
-val propertiesRootProjectName = providers.gradleProperty("kmpbuildlogic.properties.root.project.name").orNull ?: "KMP-Build-Logic"
-rootProject.name = propertiesRootProjectName
+rootProject.name = System.getProperty("kmpbuildlogic.properties.root.project.name")
 
 logger.info("Step 4 : 'rootProject buildFileName' setting.")
 /**
@@ -102,18 +97,13 @@ logger.info("Step 4 : 'rootProject buildFileName' setting.")
  * - Root project buildFileName configured from properties
  *
  */
-val propertiesRootProjectBuilFileName = providers.gradleProperty("kkmpbuildlogic.properties.root.project.build.file.name").orNull ?: "build.gradle.kts"
-rootProject.buildFileName = propertiesRootProjectBuilFileName
+rootProject.buildFileName = System.getProperty("kmpbuildlogic.properties.root.project.build.file.name")
 
-logger.info("Step 5 : setting of the 'main rootProject name' also as 'system property'.")
-// The design setup of a module project name is: 'main rootProject name' + '-' + 'moduleName'
-System.setProperty("kmpbuildlogic.properties.root.project.name", propertiesRootProjectName)
-
-logger.info("Step 6 : setting of the 'repositories' within 'dependencyResolutionManagement'.")
+logger.info("Step 5 : setting of the 'repositories' within 'dependencyResolutionManagement'.")
 /**
  * Dependency Resolution Management:
  *
- * - Defines where dependencies are downloaded from. 
+ * - Defines where dependencies are downloaded from.
  *
  */
 @Suppress("UnstableApiUsage")
@@ -128,10 +118,10 @@ dependencyResolutionManagement {
         // Tries to read from gradle.properties first, then falls back to environment variables.
         // The check if a value is found or not is done through '?:'.
         val gitHubUsername: String? =
-            providers.gradleProperty("kmpbuildlogic.properties.github.username").orNull ?: System.getenv("GITHUB_USERNAME")
-        val gitHubToken: String? = providers.gradleProperty("kmpbuildlogic.properties.github.token").orNull ?: System.getenv("GITHUB_TOKEN")
+            resolveProperty("kmpbuildlogic.properties.github.username") ?: System.getenv("GITHUB_USERNAME")
+        val gitHubToken: String? = resolveProperty("kmpbuildlogic.properties.github.token") ?: System.getenv("GITHUB_TOKEN")
         val gitHubUrl: String =
-            providers.gradleProperty("kmpbuildlogic.properties.github.url").orNull ?: throw IllegalArgumentException(
+            resolveProperty("kmpbuildlogic.properties.github.url") ?: throw IllegalArgumentException(
                 "Github URL is not specified in gradle.properties",
             )
         google {
@@ -155,7 +145,7 @@ dependencyResolutionManagement {
         }
         mavenCentral()
     }
-    
+
     /**
      * Version Catalogs:
      *
@@ -175,26 +165,26 @@ dependencyResolutionManagement {
     }
 }
 
-logger.info("Step 7 : retrieve and setting of the variables needed for the buildscan feature within develocity.")
+logger.info("Step 6 : retrieve and setting of the variables needed for the buildscan feature within develocity.")
 /**
  * Build Scan:
  *
- * - Build scan legal handling and build metadata. 
+ * - Build scan legal handling and build metadata.
  *
  */
-val gradleBuildScanLegalTermsOfUseUrl = providers.gradleProperty("org.gradle.buildscan.legal.terms.of.use.url").orNull ?: "https://gradle.com/help/legal-terms-of-use"
+val gradleBuildScanLegalTermsOfUseUrl = System.getProperty("org.gradle.buildscan.legal.terms.of.use.url")
 val gradleBuildScanLegalTermsOfUseAutomaticAcceptance =
-    providers.gradleProperty("org.gradle.buildscan.legal.terms.of.use.automatic.acceptance").orNull ?: "no"
+    System.getProperty("org.gradle.buildscan.legal.terms.of.use.automatic.acceptance")
 val isCLI = System.getenv("CI") != null
-val buildScanUploadInBackground = providers.gradleProperty("kmpbuildlogic.properties.buildscan.upload.in.background").orNull ?: "false"
-val kmpbuildlogicLibraryVersion = providers.gradleProperty("kmpbuildlogic.properties.library.version").orNull ?: "1.0.0"
-val kmpbuildlogicBuildNumber = providers.gradleProperty("kmpbuildlogic.properties.build.number").orNull ?: "2025.05.26.01"
+val buildScanUploadInBackground = System.getProperty("kmpbuildlogic.properties.buildscan.upload.in.background")
+val kmpBuildLogicLibraryVersion = System.getProperty("kmpbuildlogic.properties.library.version")
+val kmpBuildLogicBuildNumber = System.getProperty("kmpbuildlogic.properties.build.number")
 
-logger.info("Step 8 : implementation of develocity settings.")
+logger.info("Step 7 : implementation of develocity settings.")
 /**
  * Develocity:
  *
- * - Applying Develocity settings. 
+ * - Applying Develocity settings.
  *
  */
 develocity {
@@ -212,7 +202,7 @@ develocity {
     }
 }
 
-logger.info("Step 9 : retrieve and setting of the variables needed for 'build cache' settings.")
+logger.info("Step 8 : retrieve and setting of the variables needed for 'build cache' settings.")
 /**
  * Build Cache:
  *
@@ -220,40 +210,20 @@ logger.info("Step 9 : retrieve and setting of the variables needed for 'build ca
  * - Speeds up builds by reusing outputs.
  *
  */
-val localBuildCacheDirectory =
-    providers.gradleProperty("kmpbuildlogic.properties.local.build.cache.path").get()
-val localBuildCacheEnabled = providers.gradleProperty("kmpbuildlogic.properties.local.build.cache.enabled").orNull ?: "false"
+val localBuildCacheDirectory = System.getProperty("kmpbuildlogic.properties.local.build.cache.path")
+val localBuildCacheEnabled = System.getProperty("kmpbuildlogic.properties.local.build.cache.enabled")
 
-logger.info("Step 10: buildCache")
+logger.info("Step 9 : buildCache")
 buildCache {
     local {
         isEnabled = localBuildCacheEnabled.toBoolean()
         if (localBuildCacheDirectory != "") {
             directory = localBuildCacheDirectory
-        }       
+        }
     }
 }
 
-logger.info("Step 11: setting of 'kmpbuildlogicLibraryVersion' as a 'system property'.")
-/**
- * Library metadata:
- *
- * - Library metadata shared. 
- *
- */
-System.setProperty("kmpbuildlogic.properties.library.version", kmpbuildlogicLibraryVersion)
-
-logger.info("Step 12: setting of 'packageName' as a 'system property'.")
-/**
- * Package name:
- *
- * - Package name shared. 
- *
- */
-val kmpbuildlogicPackageName = providers.gradleProperty("kmpbuildlogic.properties.package.name").orNull ?: "io.github.dickkouwenhoven.kmpbuildlogic"
-System.setProperty("kmpbuildlogic.properties.package.name", kmpbuildlogicPackageName)
-
-logger.info("Step 13: 'enableFeaturePreview' settings.")
+logger.info("Step 10: 'enableFeaturePreview' settings.")
 /**
  * Feature previews:
  *
@@ -264,14 +234,13 @@ logger.info("Step 13: 'enableFeaturePreview' settings.")
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
 
-logger.info("Step 14: including the modules used in this project.")
+logger.info("Step 11: including the modules used in this project.")
 /**
  * Child projects:
  *
- * - Child projects included. 
+ * - Child projects included.
  *
  */
-
 include(":documentation")
 include(":childProjectA")
 include(":childProjectB")
