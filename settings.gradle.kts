@@ -41,8 +41,8 @@ pluginManagement {
         providers
             .gradleProperty(githubUrlProperty)
             .orNull ?: throw IllegalArgumentException(
-                "GitHub URL is not specified in gradle.properties"
-            )
+            "GitHub URL is not specified in gradle.properties"
+        )
     System.setProperty(githubUrlProperty, githubUrl)
 
     includeBuild("setting-logic")
@@ -74,15 +74,15 @@ logger.info("Step 2 : plugin settings.")
  * - Declares plugins.
  *
  */
+val develocityProperty = "org.gradle.develocity"
+val develocityVersion: String = when {
+    settings.providers.gradleProperty(develocityProperty).isPresent -> settings.providers.gradleProperty(develocityProperty).get()
+    settings.providers.systemProperty(develocityProperty).isPresent -> settings.providers.systemProperty(develocityProperty).get()
+    settings.providers.environmentVariable(develocityProperty).isPresent -> settings.providers.environmentVariable(develocityProperty).get()
+    else -> "4.0.2"
+}
 plugins {
     // https://gradle.com/develocity/releases/
-    val develocityProperty = "org.gradle.develocity"
-    val develocityVersion = when {
-        settings.providers.gradleProperty(develocityProperty).isPresent -> settings.providers.gradleProperty(develocityProperty).get()
-        settings.providers.systemProperty(develocityProperty).isPresent -> settings.providers.systemProperty(develocityProperty).get()
-        settings.providers.environmentVariable(develocityProperty).isPresent -> settings.providers.environmentVariable(develocityProperty).get()
-        else -> "4.0.2"
-    }
     id("com.gradle.develocity") version develocityVersion
     id("kmpbuildlogic.settings.convention.plugin")
 }
@@ -179,13 +179,13 @@ logger.info("Step 6 : retrieve and setting of the variables needed for the build
  * - Build scan legal handling and build metadata.
  *
  */
-val gradleBuildScanLegalTermsOfUseUrl = System.getProperty("org.gradle.buildscan.legal.terms.of.use.url")
-val gradleBuildScanLegalTermsOfUseAutomaticAcceptance =
+val gradleBuildScanLegalTermsOfUseUrl: String = System.getProperty("org.gradle.buildscan.legal.terms.of.use.url")
+val gradleBuildScanLegalTermsOfUseAutomaticAcceptance: String =
     System.getProperty("org.gradle.buildscan.legal.terms.of.use.automatic.acceptance")
 val isCLI = System.getenv("CI") != null
-val buildScanUploadInBackground = System.getProperty("kmpbuildlogic.properties.buildscan.upload.in.background")
-val kmpBuildLogicLibraryVersion = System.getProperty("kmpbuildlogic.properties.library.version")
-val kmpBuildLogicBuildNumber = System.getProperty("kmpbuildlogic.properties.build.number")
+val buildScanUploadInBackground: String = System.getProperty("kmpbuildlogic.properties.buildscan.upload.in.background")
+val kmpBuildLogicLibraryVersion: String = System.getProperty("kmpbuildlogic.properties.library.version")
+val kmpBuildLogicBuildNumber: String = System.getProperty("kmpbuildlogic.properties.build.number")
 
 logger.info("Step 7 : implementation of develocity settings.")
 /**
@@ -217,8 +217,8 @@ logger.info("Step 8 : retrieve and setting of the variables needed for 'build ca
  * - Speeds up builds by reusing outputs.
  *
  */
-val localBuildCacheDirectory = System.getProperty("kmpbuildlogic.properties.local.build.cache.path")
-val localBuildCacheEnabled = System.getProperty("kmpbuildlogic.properties.local.build.cache.enabled")
+val localBuildCacheDirectory: String = System.getProperty("kmpbuildlogic.properties.local.build.cache.path")
+val localBuildCacheEnabled: String = System.getProperty("kmpbuildlogic.properties.local.build.cache.enabled")
 
 logger.info("Step 9 : buildCache")
 buildCache {
