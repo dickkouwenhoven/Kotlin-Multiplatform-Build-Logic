@@ -41,7 +41,7 @@ pluginManagement {
         providers
             .gradleProperty(githubUrlProperty)
             .orNull ?: throw IllegalArgumentException(
-            "GitHub URL is not specified in gradle.properties"
+            "GitHub URL is not specified in gradle.properties",
         )
     System.setProperty(githubUrlProperty, githubUrl)
 
@@ -59,11 +59,11 @@ pluginManagement {
         id("de.undercouch.download") version System.getProperty("de.undercouch.download.version")
         // https://github.com/gradle/foojay-toolchains/tags
         if (System.getProperty("foojayPluginNeeded").toBoolean()) {
-            id("org.gradle.toolchains.foojay.resolver.convention") version System
-                .getProperty("org.gradle.toolchains.foojay.resolver.convention")
+            id("org.gradle.toolchains.foojay.resolver.convention") version
+                System
+                    .getProperty("org.gradle.toolchains.foojay.resolver.convention")
         }
         id("kmpbuildlogic.settings.convention.plugin")
-        id("kmpbuildlogic.project.convention.plugin")
     }
 }
 
@@ -74,15 +74,9 @@ logger.info("Step 2 : plugin settings.")
  * - Declares plugins.
  *
  */
-val develocityProperty = "org.gradle.develocity"
-val develocityVersion: String = when {
-    settings.providers.gradleProperty(develocityProperty).isPresent -> settings.providers.gradleProperty(develocityProperty).get()
-    settings.providers.systemProperty(develocityProperty).isPresent -> settings.providers.systemProperty(develocityProperty).get()
-    settings.providers.environmentVariable(develocityProperty).isPresent -> settings.providers.environmentVariable(develocityProperty).get()
-    else -> "4.0.2"
-}
 plugins {
     // https://gradle.com/develocity/releases/
+    val develocityVersion = "4.0.2"
     id("com.gradle.develocity") version develocityVersion
     id("kmpbuildlogic.settings.convention.plugin")
 }
@@ -125,12 +119,16 @@ dependencyResolutionManagement {
         // Tries to read from gradle.properties first, then falls back to environment variables.
         // The check if a value is found or not is done through '?:'.
         val gitHubUsername: String? =
-            settings.providers.gradleProperty("kmpbuildlogic.properties.github.username").orNull ?: System.getenv("GITHUB_USERNAME")
-        val gitHubToken: String? = settings.providers.gradleProperty("kmpbuildlogic.properties.github.token").orNull ?: System.getenv("GITHUB_TOKEN")
+            settings.providers.gradleProperty("kmpbuildlogic.properties.github.username").orNull
+                ?: System.getenv("GITHUB_USERNAME")
+        val gitHubToken: String? =
+            settings.providers.gradleProperty("kmpbuildlogic.properties.github.token").orNull
+                ?: System.getenv("GITHUB_TOKEN")
         val gitHubUrl: String =
-            settings.providers.gradleProperty("kmpbuildlogic.properties.github.url").orNull ?: throw IllegalArgumentException(
-                "Github URL is not specified in gradle.properties",
-            )
+            settings.providers.gradleProperty("kmpbuildlogic.properties.github.url").orNull
+                ?: throw IllegalArgumentException(
+                    "Github URL is not specified in gradle.properties",
+                )
         google {
             mavenContent {
                 includeGroupByRegex(".*androidx.*")
@@ -183,7 +181,7 @@ val gradleBuildScanLegalTermsOfUseUrl: String = System.getProperty("org.gradle.b
 val gradleBuildScanLegalTermsOfUseAutomaticAcceptance: String =
     System.getProperty("org.gradle.buildscan.legal.terms.of.use.automatic.acceptance")
 val isCLI = System.getenv("CI") != null
-val buildScanUploadInBackground: String = System.getProperty("kmpbuildlogic.properties.buildscan.upload.in.background")
+val buildScanUploadInBackground: String = System.getProperty("org.gradle.buildscan.upload.in.background")
 val kmpBuildLogicLibraryVersion: String = System.getProperty("kmpbuildlogic.properties.library.version")
 val kmpBuildLogicBuildNumber: String = System.getProperty("kmpbuildlogic.properties.build.number")
 
@@ -248,9 +246,13 @@ logger.info("Step 11: including the modules used in this project.")
  * - Child projects included.
  *
  */
+include(":annotations")
 include(":documentation")
 include(":childProjectA")
 include(":childProjectB")
+include(":plugins")
+include(":publish:gradlePortalPlugin")
+include(":publish:mavenCentralPlugin")
 
 logger.info("\n")
 logger.info("    ==========                        End of settings.gradle.kts from module root                        ==========\n")
