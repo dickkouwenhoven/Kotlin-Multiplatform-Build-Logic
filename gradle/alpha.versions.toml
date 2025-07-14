@@ -1,59 +1,152 @@
 [versions]
+
+# https://github.com/?????????????/releases
+androidToolsBuildGradleVersion               = "8.11.0"
+
+# https://github.com/apache/maven-plugin-tools/releases
+apacheMavenModelVersion                      = "3.9.10"
+
+# https://github.com/autonomousapps/dependency-analysis-gradle-plugin/tags
+autonomousAppTestKitTruthVersion             = "1.1"
+
 # https://github.com/adamko-dev/dokkatoo/releases
-devAdamkoDokkatooVersion              = "2.4.0"
+devAdamkoDokkatooVersion                     = "2.4.0"
+
+# https://github.com/gmazzo/gradle-buildconfig-plugin/releases
+githubGmazzoBuildconfigVersion               = "5.6.7"
 
 # https://github.com/google/gson/releases
-googleCodeGsonVersion                 = "2.13.1"
+googleCodeGsonVersion                        = "2.13.1"
 
-# https://github.com/gradle/foojay-toolchains/tags
-gradleToolchainsFoojayResolverVersion = "1.0.0"
+# https://github.com/google/TestParameterInjector/tags
+googleTestParameterInjectorVersion           = "1.18"
+
+# https://github.com/google/truth/releases
+googleTruthVersion                           = "1.4.4"
+
+# https://github.com/?????????????/releases
+gradleDevelocityGradlePluginVersion          = "4.02"
+
+# https://github.com/?????????????/releases
+gradlePluginPublishVersion                   = "1.3.1"
+
+# https://github.com/GradleUp/shadow/releases
+gradleupShadowPluginVersion                  = "9.0.0-rc1"
+
+# https://github.com/InsertKoinIO/koin/releases
+insertKoinVersion                            = "4.1.0"
 
 # https://github.com/Kotlin/dokka/releases
-jetbrainsDokkaVersion                 = "2.0.0" 
+jetbrainsDokkaVersion                        = "2.0.0"
 
 # https://github.com/JetBrains/kotlin/releases
-jetbrainsKotlinVersion                = "2.2.0"
+jetbrainsKotlinVersion                       = "2.2.0"
+
+jetbrainsKotlinxAtomicfuVersion              = "0.29.0"
+
+# https://github.com/Kotlin/binary-compatibility-validator/releases
+jetbrainsKotlinxBinaryCompatibilityVersion   = "0.18.1"
+
+# https://github.com/Kotlin/kotlinx.coroutines/releases
+jetbrainsKotlinxCoroutinesCoreVersion        = "1.10.2"
 
 # https://github.com/Kotlin/kotlinx.serialization/releases
-jetbrainsKotlinxSerializationVersion  = "1.8.1"
+jetbrainsKotlinxSerializationVersion         = "1.9.0"
+
+# https://github.com/jeremymailen/kotlinter-gradle/releases
+jmailenGradleKotlinterGradleVersion          = "5.1.1"
 
 # https://github.com/junit-team/junit5/releases
-junitVersion                          = "5.13.2"
+junitVersion                                 = "5.13.2"
+
+# https://github.com/dickkouwenhoven/Kotlin-Multiplatform-Build-Logic/releases
+kmpBuildLogicPublishPluginVersion            = "1.0.0"
+
+# https://github.com/kordamp/pomchecker/releases
+kordampPomCheckerVersion                     = "1.14.0"
+
+# https://github.com/ktorio/ktor/releases
+ktorVersion                                  = "3.2.1"
+ktorServerTestsVersion                       = "2.3.13"
+
+# https://github.com/mockito/mockito/releases
+mockitoCoreVersion                           = "5.18.0"
+
+# https://github.com/????????/releases
+osackyDoctorPluginVersion                    = "0.11.0"
+
+# https://github.com/pinterest/ktlint/releases
+pinterestVersion                             = "1.6.0"
 
 # https://github.com/semver4j/semver4j/releases
-semver4jVersion                       = "5.8.0"
+semver4jVersion                              = "6.0.0"
 
 [libraries]
-devAdamkoDokkatooPlugin               = { module = "dev.adamko.dokkatoo:dokkatoo-plugin",              version.ref = "devAdamkoDokkatooVersion"              }
-googleCodeGson                        = { module = "com.google.code.gson:gson",                        version.ref = "googleCodeGsonVersion"                 } 
-gradleToolchainsFoojayResolver        = { module = "org.gradle.toolchains:foojay-resolver",            version.ref = "gradleToolchainsFoojayResolverVersion" }
-jetbrainsDokkaAllModulesPagePlugin    = { module = "org.jetbrains.dokka:all-modules-page-plugin",      version.ref = "jetbrainsDokkaVersion"                 }
-jetbrainsDokkaVersioningPlugin        = { module = "org.jetbrains.dokka:versioning-plugin",            version.ref = "jetbrainsDokkaVersion"                 }
-jetbrainsKotlinGradlePlugin           = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin",        version.ref = "jetbrainsKotlinVersion"                }
-jetbrainsKotlinGradlePluginApi        = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin-api",    version.ref = "jetbrainsKotlinVersion"                }
-jetbrainsKotlinTest                   = { module = "org.jetbrains.kotlin:kotlin-test",                 version.ref = "jetbrainsKotlinVersion"                }
-jetbrainsKotlinTestJunit5             = { module = "org.jetbrains.kotlin:kotlin-test-junit5",          version.ref = "jetbrainsKotlinVersion"                }
-jetbrainsKotlinxSerializationJson     = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "jetbrainsKotlinxSerializationVersion"  }
-junitBom                              = { module = "org.junit:junit-bom",                              version.ref = "junitVersion"                          }
-junitJupiterApi                       = { module = "org.junit.jupiter:junit-jupiter-api",              version.ref = "junitVersion"                          }
-junitJupiterEngine                    = { module = "org.junit.jupiter:junit-jupiter-engine",           version.ref = "junitVersion"                          }
-junitJupiterParams                    = { module = "org.junit.jupiter:junit-jupiter-params",           version.ref = "junitVersion"                          }
-semver4j                              = { module = "org.semver4j:semver4j",                            version.ref = "semver4jVersion"                       }
+androidToolsBuildGradle                      = { module = "com.android.tools.build:gradle",                                       version.ref = "androidToolsBuildGradleVersion"             }
+apacheMavenModel                             = { module = "org.apache.maven:maven-model",                                         version.ref = "apacheMavenModelVersion"                    }
+autonomousAppTestKitTruth                    = { module = "com.autonomousapps:testkit-truth",                                     version.ref = "autonomousAppTestKitTruthVersion"           }
+devAdamkoDokkatooPlugin                      = { module = "dev.adamko.dokkatoo:dokkatoo-plugin",                                  version.ref = "devAdamkoDokkatooVersion"                   }
+googleCodeGson                               = { module = "com.google.code.gson:gson",                                            version.ref = "googleCodeGsonVersion"                      }
+googleTestParameterInjector                  = { module = "com.google.testparameterinjector:test-parameter-injector-junit5",      version.ref = "googleTestParameterInjectorVersion"         }
+googleTruth                                  = { module = "com.google.truth:truth",                                               version.ref = "googleTruthVersion"                         }
+gradleDevelocityGradlePlugin                 = { module = "com.gradle:develocity-gradle-plugin",                                  version.ref = "gradleDevelocityGradlePluginVersion"        }
+insertKoinBom                                = { module = "io.insert-koin:koin-bom",                                              version.ref = "insertKoinVersion"                          }
+insertKoinCore                               = { module = "io.insert-koin:koin-core"                                                                                                         }
+insertKoinTest                               = { module = "io.insert-koin:koin-test"                                                                                                         }
+insertKoinTestJunit5                         = { module = "io.insert-koin:koin-test-junit5"                                                                                                  }
+jetbrainsDokkaAllModulesPagePlugin           = { module = "org.jetbrains.dokka:all-modules-page-plugin",                          version.ref = "jetbrainsDokkaVersion"                      }
+jetbrainsDokkaVersioningPlugin               = { module = "org.jetbrains.dokka:versioning-plugin",                                version.ref = "jetbrainsDokkaVersion"                      }
+jetbrainsKotlinReflect                       = { module = "org.jetbrains.kotlin:kotlin-reflect",                                  version.ref = "jetbrainsKotlinVersion" }
+jetbrainsKotlinStdlibJdk8                    = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8",                              version.ref = "jetbrainsKotlinVersion" }
+jetbrainsKotlinGradlePlugin                  = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin",                            version.ref = "jetbrainsKotlinVersion"                     }
+jetbrainsKotlinGradlePluginApi               = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin-api",                        version.ref = "jetbrainsKotlinVersion"                     }
+jetbrainsKotlinSerialization                 = { module = "org.jetbrains.kotlin:kotlin-serialization",                            version.ref = "jetbrainsKotlinVersion"                     }
+jetbrainsKotlinStdlib                        = { module = "org.jetbrains.kotlin:kotlin-stdlib",                                   version.ref = "jetbrainsKotlinVersion"                     }
+jetbrainsKotlinTest                          = { module = "org.jetbrains.kotlin:kotlin-test",                                     version.ref = "jetbrainsKotlinVersion"                     }
+jetbrainsKotlinTestJunit5                    = { module = "org.jetbrains.kotlin:kotlin-test-junit5",                              version.ref = "jetbrainsKotlinVersion"                     }
+jetbrainsKotlinxAtomicfuGradlePlugin         = { module = "org.jetbrains.kotlinx:atomicfu-gradle-plugin",                         version.ref = "jetbrainsKotlinxAtomicfuVersion"            }
+jetbrainsKotlinxBinaryCompatibilityValidator = { module = "org.jetbrains.kotlinx:binarty-compatibility-validator",                version.ref = "jetbrainsKotlinxBinaryCompatibilityVersion" }
+jetbrainsKotlinxCoroutinesCore               = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core",                        version.ref = "jetbrainsKotlinxCoroutinesCoreVersion"      }
+jetbrainsKotlinxSerializationJson            = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json",                     version.ref = "jetbrainsKotlinxSerializationVersion"       }
+jmailenGradleKotlinterGradle                 = { module = "org.jmailen.gradle:kotlinter-gradle",                                  version.ref = "jmailenGradleKotlinterGradleVersion"        }
+junitBom                                     = { module = "org.junit:junit-bom",                                                  version.ref = "junitVersion"                               }
+junitJupiter                                 = { module = "org.junit.jupiter:junit-jupiter",                                      version.ref = "junitVersion"                               }
+junitJupiterApi                              = { module = "org.junit.jupiter:junit-jupiter-api",                                  version.ref = "junitVersion"                               }
+junitJupiterEngine                           = { module = "org.junit.jupiter:junit-jupiter-engine",                               version.ref = "junitVersion"                               }
+junitJupiterParams                           = { module = "org.junit.jupiter:junit-jupiter-params",                               version.ref = "junitVersion"                               }
+kmpBuildLogicPublishPlugin                   = { module = "io.github.dickkouwenhoven.kmpbuildlogic:kmpbuildlogic-publish-plugin", version.ref = "kmpBuildLogicPublishPluginVersion"          }
+ktorClientAuth                               = { module = "io.ktor:ktor-client-auth",                                             version.ref = "ktorVersion"                                }
+ktorClientCio                                = { module = "io.ktor:ktor-client-cio",                                              version.ref = "ktorVersion"                                }
+ktorClientContentNegotiation                 = { module = "io.ktor:ktor-client-content-negotiation",                              version.ref = "ktorVersion"                                }
+ktorClientCore                               = { module = "io.ktor:ktor-client-core",                                             version.ref = "ktorVersion"                                }
+ktorClientLogging                            = { module = "io.ktor:ktor-client-logging",                                          version.ref = "ktorVersion"                                }
+ktorClientMock                               = { module = "io.ktor:ktor-client-mock",                                             version.ref = "ktorVersion"                                }
+ktorClientMockJvm                            = { module = "io.ktor:ktor-client-mock-jvm",                                         version.ref = "ktorVersion"                                }
+ktorSerializationKotlinxJson                 = { module = "io.ktor:ktor-serialization-kotlinx-json",                              version.ref = "ktorVersion"                                }
+ktorServerTests                              = { module = "io.ktor:ktor-server-tests",                                            version.ref = "ktorServerTestsVersion"                     }
+mockitoCore                                  = { module = "org.mockito:mockito-core",                                             version.ref = "mockitoCoreVersion"                         }
+osackyDoctorPlugin                           = { module = "com.osacky.doctor:doctor-plugin",                                      version.ref = "osackyDoctorPluginVersion"                  }
+pinterestKtlintCli                           = { module = "com.pinterest.ktlint:ktlint-cli",                                      version.ref = "pinterestVersion"                           }
+semver4j                                     = { module = "org.semver4j:semver4j",                                                version.ref = "semver4jVersion"                            }
 
 [plugins]
-jetbrainsKotlinJvm                    = { id     = "org.jetbrains.kotlin.jvm",                         version.ref = "jetbrainsKotlinVersion"                }
-jetbrainsKotlinPluginSerialization    = { id     = "org.jetbrains.kotlin.plugin.serialization",        version.ref = "jetbrainsKotlinVersion"                }
+githubGmazzoBuildconfig                      = { id     = "com.github.gmazzo.buildconfig",                                        version.ref = "githubGmazzoBuildconfigVersion"             }
+gradlePluginPublish                          = { id     = "com.gradle.plugin-publish",                                            version.ref = "gradlePluginPublishVersion"                 }
+gradleupShadowPlugin                         = { id     = "com.gradleup.shadow",                                                  version.ref = "gradleupShadowPluginVersion"                }
+jetbrainsKotlinJvm                           = { id     = "org.jetbrains.kotlin.jvm",                                             version.ref = "jetbrainsKotlinVersion"                     }
+jetbrainsKotlinPluginSerialization           = { id     = "org.jetbrains.kotlin.plugin.serialization",                            version.ref = "jetbrainsKotlinVersion"                     }
+kordampGradlePortalPluginPomChecker          = { id     = "org.kordamp.gradle.pomchecker",                                        version.ref = "kordampPomCheckerVersion"                   }
 
 # Plugins defined by this project
-daemonConfigConventionPlugin          = { id     = "daemon.config.convention.plugin",                  version     = "unspecified"                           }
-dokkatooConventionPlugin              = { id     = "dokkatoo-convention.plugin",                       version     = "unspecified"                           }
-jvmToolchainConventionPlugin          = { id     = "jvm.toolchain.convention.plugin",                  version     = "unspecified"                           }
-jvmToolchainEvaluationPlugin          = { id     = "jvm.toolchain.evaluate.convention.plugin",         version     = "unspecified"                           }
-kmpBuildLogicProjectPlugin            = { id     = "kmpbuildlogic.project.convention.plugin",          version     = "unspecified"                           }
-kmpBuildLogicPropertiesPlugin         = { id     = "kmpbuildlogic.properties.convention.plugin",       version     = "unspecified"                           }
-kmpBuildLogicSettingsPlugin           = { id     = "kmpbuildlogic.settings.convention.plugin",         version     = "unspecified"                           }
-versionCatalogProfilePlugin           = { id     = "version.catalog.profile.convention.plugin",        version     = "unspecified"                           }
+daemonConfigConventionPlugin                 = { id     = "daemon.config.convention.plugin",                                      version     = "unspecified"                                }
+jvmToolchainConventionPlugin                 = { id     = "jvm.toolchain.convention.plugin",                                      version     = "unspecified"                                }
+jvmToolchainEvaluationPlugin                 = { id     = "jvm.toolchain.evaluate.convention.plugin",                             version     = "unspecified"                                }
+kmpbBuildLogicDocumentationPlugin            = { id     = "kmpbuildlogic.publish.documentation.plugin",                           version     = "unspecified"                                }
+kmpBuildLogicPropertiesPlugin                = { id     = "kmpbuildlogic.properties.convention.plugin",                           version     = "unspecified"                                }
+kmpBuildLogicPublishPlugin                   = { id     = "com.dickkouwenhoven.kmpbuildlogic.publishingPlugin",                   version     = "unspecified"                                }
+kmpBuildLogicSettingsPlugin                  = { id     = "kmpbuildlogic.settings.convention.plugin",                             version     = "unspecified"                                }
+kmpBuildLogicVerificationPlugin              = { id     = "kmpbuildlogic.verification.convention.plugin",                         version     = "unspecified"                                }
+versionCatalogProfilePlugin                  = { id     = "version.catalog.profile.convention.plugin",                            version     = "unspecified"                                }
 
 [bundles]
-kmpBuildLogicSharedLibraries          = ["devAdamkoDokkatooPlugin"]
-
+kmpBuildLogicSharedLibraries                 = ["devAdamkoDokkatooPlugin"]
