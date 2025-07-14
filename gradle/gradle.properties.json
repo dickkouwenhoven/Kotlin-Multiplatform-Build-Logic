@@ -25,8 +25,8 @@
             },
             "valueType": "VERSION"
         },
-        "apache.commons.io": {
-            "key": "apache.commons.io",
+        "apache.commons.io.version": {
+            "key": "apache.commons.io.version",
             "defaultValue": "2.18.0",
             "allowedValues": [],
             "versionRequirements": {
@@ -70,7 +70,7 @@
         },
         "org.gradle.buildscan.legal.terms.of.use.automatic.acceptance": {
             "key": "org.gradle.buildscan.legal.terms.of.use.automatic.acceptance",
-            "defaultValue": "yes",
+            "defaultValue": "no",
             "allowedValues": ["no","yes"],
             "versionRequirements": {
             },
@@ -86,11 +86,11 @@
         },
         "org.gradle.develocity": {
             "key": "org.gradle.develocity",
-            "defaultValue": "4.0.1",
+            "defaultValue": "4.0.2",
             "allowedValues": [],
             "versionRequirements": {
-                "require": "[4.0.1,)",
-                "prefer": "4.0.1"
+                "require": "[4.0.2,)",
+                "prefer": "4.0.2"
             },
             "valueType": "VERSION"
         },
@@ -250,6 +250,14 @@
             },
             "valueType": "BOOLEAN"
         },
+        "java.jps.build.enabled": {
+            "key": "java.jps.build.enabled",
+            "defaultValue": "true",
+            "allowedValues": ["false", "true"],
+            "versionRequirements": {
+            },
+            "valueType": "BOOLEAN"
+        },
         "kmpbuildlogic.properties.build.number": {
             "key": "kmpbuildlogic.properties.build.number",
             "defaultValue": "2025.05.27.01",
@@ -298,6 +306,14 @@
             },
             "valueType": "STRING"
         },
+        "kmpbuildlogic.properties.local.repository.path": {
+            "key": "kmpbuildlogic.properties.local.repository.path",
+            "defaultValue": "./build/repository",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
         "kmpbuildlogic.properties.maven.local.directory": {
             "key": "kmpbuildlogic.properties.maven.local.directory",
             "defaultValue": ".m2",
@@ -324,7 +340,23 @@
         },
         "kmpbuildlogic.properties.root.project.name": {
             "key": "kmpbuildlogic.properties.root.project.name",
-            "defaultValue": "KMP-Build-Logic",
+            "defaultValue": "Kotlin-Multiplatform-Build-Logic",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "kmpbuildlogic.properties.default.snapshot.version": {
+            "key": "kmpbuildlogic.properties.default.snapshot.version",
+            "defaultValue": "1.0.0-SNAPSHOT",
+            "allowedValues": [],
+            "versionRequirements": {
+            },
+            "valueType": "STRING"
+        },
+        "kmpbuildlogic.properties.deploy.version": {
+            "key": "kmpbuildlogic.properties.deploy.version",
+            "defaultValue": "1.0.0",
             "allowedValues": [],
             "versionRequirements": {
             },
@@ -337,14 +369,6 @@
             "versionRequirements": {
             },
             "valueType": "STRING"
-        },
-        "kmpbuildlogic.properties.version.code": {
-            "key": "kmpbuildlogic.properties.version.code",
-            "defaultValue": "1",
-            "allowedValues": [],
-            "versionRequirements": {
-            },
-            "valueType": "INTEGER"
         },
         "kotlin.code.style": {
             "key": "kotlin.code.style",
