@@ -1,5 +1,6 @@
 [versions]
 
+# https://github.com/?????????????/releases
 androidToolsBuildGradleVersion               = "8.11.0"
 
 # https://github.com/apache/maven-plugin-tools/releases
@@ -50,7 +51,7 @@ jetbrainsKotlinxBinaryCompatibilityVersion   = "0.18.1"
 jetbrainsKotlinxCoroutinesCoreVersion        = "1.10.2"
 
 # https://github.com/Kotlin/kotlinx.serialization/releases
-jetbrainsKotlinxSerializationVersion         = "1.8.1"
+jetbrainsKotlinxSerializationVersion         = "1.9.0"
 
 # https://github.com/jeremymailen/kotlinter-gradle/releases
 jmailenGradleKotlinterGradleVersion          = "5.1.1"
@@ -78,7 +79,7 @@ osackyDoctorPluginVersion                    = "0.11.0"
 pinterestVersion                             = "1.6.0"
 
 # https://github.com/semver4j/semver4j/releases
-semver4jVersion                              = "5.8.0"
+semver4jVersion                              = "6.0.0"
 
 [libraries]
 androidToolsBuildGradle                      = { module = "com.android.tools.build:gradle",                                       version.ref = "androidToolsBuildGradleVersion"             }
