@@ -30,6 +30,7 @@ logger.info("    ==========                               INITIALIZATION PHASE O
 logger.info("    ==========                      Start of settings.gradle.kts from setting-logic                      ==========\n")
 
 logger.info("Step 1 : Creation of property resolve function.")
+
 /**
  * [resolveProperty] function:
  *
@@ -39,10 +40,11 @@ logger.info("Step 1 : Creation of property resolve function.")
  *
  */
 private fun resolveProperty(key: String): String? {
-    val rootGradleProperties = file("../gradle.properties")
-        .takeIf { it.exists() }
-        ?.inputStream()
-        ?.use { Properties().apply { load(it) } }
+    val rootGradleProperties =
+        file("../gradle.properties")
+            .takeIf { it.exists() }
+            ?.inputStream()
+            ?.use { Properties().apply { load(it) } }
     return when {
         settings.providers.gradleProperty(key).isPresent -> settings.providers.gradleProperty(key).get()
         // Sometimes gradle.properties file is not available in the early cycle. Reading it directly therefore needed.
@@ -104,7 +106,7 @@ logger.info("Step 5 : Determine the settings to be used for develocity build sca
 val gradleBuildScanLegalTermsOfUseUrlProperty = "org.gradle.buildscan.legal.terms.of.use.url"
 val gradleBuildScanLegalTermsOfUseUrl =
     resolveProperty(
-        gradleBuildScanLegalTermsOfUseUrlProperty
+        gradleBuildScanLegalTermsOfUseUrlProperty,
     ) ?: "https://gradle.com/help/legal-terms-of-use"
 System.setProperty(gradleBuildScanLegalTermsOfUseUrlProperty, gradleBuildScanLegalTermsOfUseUrl)
 
@@ -114,19 +116,23 @@ val gradleBuildScanLegalTermsOfUseAutomaticAcceptance =
     resolveProperty(gradleBuildScanLegalTermsOfUseAutomaticResponseProperty) ?: "no"
 System.setProperty(
     gradleBuildScanLegalTermsOfUseAutomaticResponseProperty,
-    gradleBuildScanLegalTermsOfUseAutomaticAcceptance
+    gradleBuildScanLegalTermsOfUseAutomaticAcceptance,
 )
 
 val buildScanUploadInBackgroundProperty = "org.gradle.buildscan.upload.in.background"
 val buildScanUploadInBackground = resolveProperty(buildScanUploadInBackgroundProperty) ?: "false"
 System.setProperty(
     buildScanUploadInBackgroundProperty,
-    buildScanUploadInBackground
+    buildScanUploadInBackground,
 )
 
 val kmpBuildLogicVersionProperty = "kmpbuildlogic.properties.library.version"
 val kmpBuildLogicLibraryVersion = resolveProperty(kmpBuildLogicVersionProperty) ?: "1.0.0"
 System.setProperty(kmpBuildLogicVersionProperty, kmpBuildLogicLibraryVersion)
+
+val kmpBuildLogicSnapshotVersionProperty = "kmpbuildlogic.properties.snapshot.version"
+val kmpBuildLogicSnapshotVersionValue = resolveProperty(kmpBuildLogicSnapshotVersionProperty) ?: "1.0.0-SNAPSHOT"
+System.setProperty(kmpBuildLogicSnapshotVersionProperty, kmpBuildLogicSnapshotVersionValue)
 
 val kmpBuildLogicBuildNumberProperty = "kmpbuildlogic.properties.build.number"
 val kmpBuildLogicBuildNumber = resolveProperty(kmpBuildLogicBuildNumberProperty) ?: "2025.07.04.01"
@@ -149,7 +155,19 @@ val localBuildCacheDirectory =
     resolveProperty(kmpBuildLogicPropertiesLocalBuildCachePathProperty) ?: "./build/cache"
 System.setProperty(kmpBuildLogicPropertiesLocalBuildCachePathProperty, localBuildCacheDirectory)
 
-logger.info("Step 7: setting of 'packageName' as a 'system property'.")
+logger.info("Step 7: Determine the setting to be used for 'localRepositoryDir'")
+/**
+ * Local Repository Directory settings section:
+ *
+ * - Sets the folder value to be used for local repository directory
+ *
+ */
+val kmpBuildLogicPropertiesLocalRepositoryPathProperty = "kmpbuildlogic.properties.local.repository.path"
+val kmpBuildLogicPropertiesLocalRepositoryPathValue =
+    resolveProperty(kmpBuildLogicPropertiesLocalRepositoryPathProperty) ?: "./build/repository"
+System.setProperty(kmpBuildLogicPropertiesLocalRepositoryPathProperty, kmpBuildLogicPropertiesLocalRepositoryPathValue)
+
+logger.info("Step 8: setting of 'packageName' as a 'system property'.")
 /**
  * Package name:
  *
@@ -157,12 +175,27 @@ logger.info("Step 7: setting of 'packageName' as a 'system property'.")
  *
  */
 val kmpBuildLogicPropertiesPackageNameProperty = "kmpbuildlogic.properties.package.name"
-val kmpbuildlogicPackageName = resolveProperty(
-    kmpBuildLogicPropertiesPackageNameProperty
-) ?: "io.github.dickkouwenhoven.kmpbuildlogic"
+val kmpbuildlogicPackageName =
+    resolveProperty(
+        kmpBuildLogicPropertiesPackageNameProperty,
+    ) ?: "io.github.dickkouwenhoven.kmpbuildlogic"
 System.setProperty(kmpBuildLogicPropertiesPackageNameProperty, kmpbuildlogicPackageName)
 
-logger.info("Step 8 : setting of the 'repositories' within 'dependencyResolutionManagement'.")
+logger.info("Step 9: setting of 'kotlinLanguageVersion' as a 'system property'.")
+/**
+ * Kotlin Language Version settings section:
+ *
+ * - Set the version to be used for the koling lanaguage version
+ *
+ */
+val kotlinLanguageVersionProperty = "kotlin.language.version"
+val kotlinLanguageVersion =
+    resolveProperty(
+        kotlinLanguageVersionProperty,
+    ) ?: "2.1.21"
+System.setProperty(kotlinLanguageVersionProperty, kotlinLanguageVersion)
+
+logger.info("Step 10: setting of the 'repositories' within 'dependencyResolutionManagement'.")
 /**
  * Dependency Resolution Management:
  *
@@ -180,12 +213,13 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 
-    val fileName = when(selectedVersionProfile) {
-        "alpha" -> "../gradle/alpha.versions.toml"
-        "beta" ->  "../gradle/beta.versions.toml"
-        "rc" -> "../gradle/rc.versions.toml"
-        else -> "../gradle/libs.versions.toml"
-    }
+    val fileName =
+        when (selectedVersionProfile) {
+            "alpha" -> "../gradle/alpha.versions.toml"
+            "beta" -> "../gradle/beta.versions.toml"
+            "rc" -> "../gradle/rc.versions.toml"
+            else -> "../gradle/libs.versions.toml"
+        }
     versionCatalogs {
         create("libs") {
             from(files(fileName))
@@ -193,7 +227,7 @@ dependencyResolutionManagement {
     }
 }
 
-logger.info("Step 9 : 'rootProject name' setting.")
+logger.info("Step 11: 'rootProject name' setting.")
 /**
  * RootProject name:
  *
@@ -202,8 +236,7 @@ logger.info("Step 9 : 'rootProject name' setting.")
  */
 rootProject.name = "$propertiesRootProjectName-Setting-Logic"
 
-
-logger.info("Step 10 : include the module 'settings-conventions.")
+logger.info("Step 12 : include the module 'settings-conventions.")
 /**
  * Child projects:
  *
@@ -212,7 +245,8 @@ logger.info("Step 10 : include the module 'settings-conventions.")
  */
 include(":settings-conventions")
 
-logger.info("Step 11 : Creation of the environment compatibility checker.")
+logger.info("Step 13 : Creation of the environment compatibility checker.")
+
 /**
  * [EnvironmentCompatibilityChecker]:
  *
@@ -226,29 +260,32 @@ object EnvironmentCompatibilityChecker {
     private val logger: Logger = Logging.getLogger(javaClass)
 
     // Symbols used
-    private const val ATTENTION_SYMBOL      = "⚠️"
-    private const val ERROR_SYMBOL          = "❌"
-    private const val INFORM_SYMBOL         = "ℹ️"
-    private const val MARK_SYMBOL           = "📍"
+    private const val ATTENTION_SYMBOL = "⚠️"
+    private const val ERROR_SYMBOL = "❌"
+    private const val INFORM_SYMBOL = "ℹ️"
+    private const val MARK_SYMBOL = "📍"
     private const val POSITIVE_CHECK_SYMBOL = "✅"
-    private const val PROCESS_SYMBOL        = "⏳"
-    private const val SETTINGS_SYMBOL       = "🔧"
+    private const val PROCESS_SYMBOL = "⏳"
+    private const val SETTINGS_SYMBOL = "🔧"
 
     // Special characters used
-    private const val SPACE                 = "\u0020"
-    private const val TAB                   = "\t"
+    private const val RETURN = "\n"
+    private const val SPACE = "\u0020"
+    private const val TAB = "\t"
 
     // Combined strings
-    const val ERROR_STRING                  = "$TAB$ERROR_SYMBOL$SPACE"
-    const val INFORM_STRING                 = "$TAB$INFORM_SYMBOL$SPACE"
-    const val INFORM_RESULT_STRING          = "$INFORM_SYMBOL$SPACE"
-    const val MARK_STRING                   = "$TAB$MARK_SYMBOL$SPACE"
-    const val POS_STRING                    = "$TAB$POSITIVE_CHECK_SYMBOL$SPACE"
-    const val POS_RESULT_STRING             = "$POSITIVE_CHECK_SYMBOL$SPACE"
-    const val PROCESS_STRING                = "$TAB$PROCESS_SYMBOL$SPACE"
-    const val SETTING_STRING                = "$TAB${SETTINGS_SYMBOL}$SPACE"
-    const val WARN_STRING                   = "$TAB$ATTENTION_SYMBOL$SPACE"
-    const val WARN_RESULT_STRING            = "$ATTENTION_SYMBOL$SPACE"
+    const val ERROR_STRING = "$TAB$ERROR_SYMBOL$SPACE"
+    const val INFORM_STRING = "$TAB$INFORM_SYMBOL$SPACE"
+    const val INFORM_RESULT_STRING = "$INFORM_SYMBOL$SPACE"
+    const val MARK_STRING = "$TAB$MARK_SYMBOL$SPACE"
+    const val POS_STRING = "$TAB$POSITIVE_CHECK_SYMBOL$SPACE"
+    const val POS_RESULT_STRING = "$POSITIVE_CHECK_SYMBOL$SPACE"
+    const val POS_RESULT_STRING_WITH_RETURN = "$RETURN$POSITIVE_CHECK_SYMBOL$SPACE"
+    const val PROCESS_STRING = "$TAB$PROCESS_SYMBOL$SPACE"
+    const val SETTING_STRING = "$TAB${SETTINGS_SYMBOL}$SPACE"
+    const val WARN_STRING = "$TAB$ATTENTION_SYMBOL$SPACE"
+    const val WARN_STRING_WITH_RETURN = "$RETURN$TAB$ATTENTION_SYMBOL$SPACE"
+    const val WARN_RESULT_STRING = "$ATTENTION_SYMBOL$SPACE"
 
     /**
      * Function [run]:
@@ -257,13 +294,17 @@ object EnvironmentCompatibilityChecker {
      * - Is the function that a plugin uses to start these compatibility checks
      *
      */
-    fun run(settings:Settings): Boolean {
+    fun run(settings: Settings): Boolean {
         val javaCheck = checkJavaRuntimeAndGradleVersionOrWarn(settings)
         if (javaCheck.result) {
             logger.lifecycle("\n")
-            logger.lifecycle("$POS_RESULT_STRING Compatibility check passed for Java Runtime ${javaCheck.javaRuntimeMajor} and ${javaCheck.gradleVersion}.")
+            logger.lifecycle(
+                "$POS_RESULT_STRING Compatibility check passed for Java Runtime ${javaCheck.javaRuntimeMajor} and ${javaCheck.gradleVersion}.",
+            )
         } else {
-            logger.lifecycle("\n$WARN_RESULT_STRING Compatibility check did not passed all checks for Java Runtime ${javaCheck.javaRuntimeMajor} and ${javaCheck.gradleVersion}.")
+            logger.lifecycle(
+                "\n$WARN_RESULT_STRING Compatibility check did not passed all checks for Java Runtime ${javaCheck.javaRuntimeMajor} and ${javaCheck.gradleVersion}.",
+            )
         }
         val osInfo = checkOsOrWarn()
         return javaCheck.result && osInfo.result
@@ -288,14 +329,15 @@ object EnvironmentCompatibilityChecker {
         logger.lifecycle("$MARK_STRING Gradle Version: $gradleVersionString")
 
         // --- Compatibility information warning ---
-        val compatibility = javaRuntimeMatrix[javaRuntimeMajor] ?: run {
-            logger.warn("$WARN_STRING Java $javaRuntimeMajor is unknown in compatibility table. Proceeding without further checking.")
-            return JavaRuntimeGradleVersionInfo(javaRuntimeMajor, gradleVersion, false)
-        }
+        val compatibility =
+            javaRuntimeMatrix[javaRuntimeMajor] ?: run {
+                logger.warn("$WARN_STRING Java $javaRuntimeMajor is unknown in compatibility table. Proceeding without further checking.")
+                return JavaRuntimeGradleVersionInfo(javaRuntimeMajor, gradleVersion, false)
+            }
         if (!isAtLeast(gradleVersionString, compatibility.runtime)) {
             throw GradleException(
                 "$ERROR_STRING Java $javaRuntimeMajor requires Gradle ${compatibility.runtime} or higher to run Gradle.\n" +
-                    "You are using Gradle $gradleVersionString."
+                    "You are using Gradle $gradleVersionString.",
             )
         }
 
@@ -306,7 +348,7 @@ object EnvironmentCompatibilityChecker {
                 logger.warn(
                     "$WARN_STRING Current Gradle version: $gradleVersionString is lower than 8.0\n" +
                         "(KMP Build Logic is not tested with this version; " +
-                        "recommendation is to use the latest available Gradle release)."
+                        "recommendation is to use the latest available Gradle release).",
                 )
             } else if (gradleVersion > GradleVersion.version("8.14.2")) {
                 logger.warn("$WARN_STRING This code would probably work, but KMP Build Logic is currently tested only up to Gradle 8.14.2.")
@@ -325,6 +367,7 @@ object EnvironmentCompatibilityChecker {
 
         return JavaRuntimeGradleVersionInfo(javaRuntimeMajor, gradleVersion, gradleInRange && toolchainSupported)
     }
+
     /**
      * Function [checkOsOrWarn]:
      *
@@ -349,10 +392,12 @@ ${
                     }
                         .prependIndent("           ")
                 }
-                """
+                """,
             )
         } else {
-            logger.lifecycle("$POS_STRING Compatibility check passed for Operating System ${osInfo.name} ${osInfo.version} (${osInfo.arch})")
+            logger.lifecycle(
+                "$POS_STRING Compatibility check passed for Operating System ${osInfo.name} ${osInfo.version} (${osInfo.arch})",
+            )
         }
         return osInfo
     }
@@ -363,39 +408,42 @@ ${
      * - Helper function to provide the main java version number based upon given full version.
      *
      */
-    fun parseJavaMajor(version: String): Int {
-        return version.split('.').let {
+    fun parseJavaMajor(version: String): Int =
+        version.split('.').let {
             when {
-                it[0] == "1" -> it[1].toInt()  // 1.8 → 8
-                else -> it[0].toInt()          // 17.0.2 → 17
+                it[0] == "1" -> it[1].toInt() // 1.8 → 8
+                else -> it[0].toInt() // 17.0.2 → 17
             }
         }
-    }
 
     // Java Runtime Matrix table information source comes from the 'user guide' of Gradle:
     // https://docs.gradle.org/current/userguide/compatibility.html
-    data class Compatibility(val toolchain: String?, val runtime: String)
-
-    val javaRuntimeMatrix: Map<Int, Compatibility> = mapOf(
-        8 to Compatibility(null, "2.0"),
-        9 to Compatibility(null, "4.3"),
-        10 to Compatibility(null, "4.7"),
-        11 to Compatibility(null, "5.0"),
-        12 to Compatibility(null, "5.4"),
-        13 to Compatibility(null, "6.0"),
-        14 to Compatibility(null, "6.3"),
-        15 to Compatibility("6.7", "6.7"),
-        16 to Compatibility("7.0", "7.0"),
-        17 to Compatibility("7.3", "7.3"),
-        18 to Compatibility("7.5", "7.5"),
-        19 to Compatibility("7.6", "7.6"),
-        20 to Compatibility("8.1", "8.3"),
-        21 to Compatibility("8.4", "8.5"),
-        22 to Compatibility("8.7", "8.8"),
-        23 to Compatibility("8.10", "8.10"),
-        24 to Compatibility("8.14", "8.14")
-        // Java 25+ currently has no official support.
+    data class Compatibility(
+        val toolchain: String?,
+        val runtime: String,
     )
+
+    val javaRuntimeMatrix: Map<Int, Compatibility> =
+        mapOf(
+            8 to Compatibility(null, "2.0"),
+            9 to Compatibility(null, "4.3"),
+            10 to Compatibility(null, "4.7"),
+            11 to Compatibility(null, "5.0"),
+            12 to Compatibility(null, "5.4"),
+            13 to Compatibility(null, "6.0"),
+            14 to Compatibility(null, "6.3"),
+            15 to Compatibility("6.7", "6.7"),
+            16 to Compatibility("7.0", "7.0"),
+            17 to Compatibility("7.3", "7.3"),
+            18 to Compatibility("7.5", "7.5"),
+            19 to Compatibility("7.6", "7.6"),
+            20 to Compatibility("8.1", "8.3"),
+            21 to Compatibility("8.4", "8.5"),
+            22 to Compatibility("8.7", "8.8"),
+            23 to Compatibility("8.10", "8.10"),
+            24 to Compatibility("8.14", "8.14"),
+            // Java 25+ currently has no official support.
+        )
 
     /**
      * Function [isAtLeast]:
@@ -403,12 +451,16 @@ ${
      * - Helper function to check if a used version is in line with the minimum required version.
      *
      */
-    fun isAtLeast(actual: String, required: String): Boolean {
-        val a = if (actual.startsWith("Gradle")) {
-            actual.substring(7).split('.').map { it.toIntOrNull() ?: 0 }
-        } else {
-            actual.split('.').map { it.toIntOrNull() ?: 0 }
-        }
+    fun isAtLeast(
+        actual: String,
+        required: String,
+    ): Boolean {
+        val a =
+            if (actual.startsWith("Gradle")) {
+                actual.substring(7).split('.').map { it.toIntOrNull() ?: 0 }
+            } else {
+                actual.split('.').map { it.toIntOrNull() ?: 0 }
+            }
         val b = required.split('.').map { it.toIntOrNull() ?: 0 }
         return a.zip(b).any { (x, y) -> x > y } || a == b
     }
@@ -418,13 +470,12 @@ ${
      *
      * - Helper function to change gradle version by removing prefix 'Gradle' from it
      */
-    fun gradleVersionToString(gradleVersion:String): String {
-        return if (gradleVersion.startsWith("Gradle")) {
+    fun gradleVersionToString(gradleVersion: String): String =
+        if (gradleVersion.startsWith("Gradle")) {
             gradleVersion.substring(7)
         } else {
             gradleVersion
         }
-    }
 
     /**
      * Data class [OSInfo]:
@@ -454,16 +505,17 @@ ${
      *
      * - A variable that holds all operating system combinations which are supported by Gradle
      */
-    val supportedOsCombinations = listOf(
-        Triple("ubuntu", "22", "amd64"),
-        Triple("ubuntu", "16", "amd64"),
-        Triple("ubuntu", "16", "aarch64"),
-        Triple("windows", "10", "amd64"),
-        Triple("mac", "12", "amd64"),
-        Triple("mac", "12", "aarch64"),
-        Triple("alpine", "3.20", "amd64"),
-        Triple("centos", "9", "amd64"),
-    )
+    val supportedOsCombinations =
+        listOf(
+            Triple("ubuntu", "22", "amd64"),
+            Triple("ubuntu", "16", "amd64"),
+            Triple("ubuntu", "16", "aarch64"),
+            Triple("windows", "10", "amd64"),
+            Triple("mac", "12", "amd64"),
+            Triple("mac", "12", "aarch64"),
+            Triple("alpine", "3.20", "amd64"),
+            Triple("centos", "9", "amd64"),
+        )
 
     /**
      * Function [isSupported]:
@@ -471,13 +523,12 @@ ${
      * - Does a supported compatibility check of the Operating System Version.
      *
      */
-    fun isSupported(osInfo: OSInfo): Boolean {
-        return supportedOsCombinations.any { (os, version, arch) ->
+    fun isSupported(osInfo: OSInfo): Boolean =
+        supportedOsCombinations.any { (os, version, arch) ->
             osInfo.name.contains(os) &&
                 osInfo.version.startsWith(version) &&
                 osInfo.arch == arch
         }
-    }
 
     /**
      * Function [detectOsInfo]:
@@ -490,18 +541,20 @@ ${
         val rawOsVersion = System.getProperty("os.version")
         val rawOsArch = System.getProperty("os.arch")
 
-        val normalizedArch = when (rawOsArch) {
-            "x86_64", "amd64" -> "amd64"
-            "aarch64", "arm64" -> "aarch64"
-            else -> rawOsArch
-        }
+        val normalizedArch =
+            when (rawOsArch) {
+                "x86_64", "amd64" -> "amd64"
+                "aarch64", "arm64" -> "aarch64"
+                else -> rawOsArch
+            }
 
-        val (distro, version) = when {
-            rawOsName.contains("mac") -> "mac" to macOsMajorVersion(rawOsVersion)
-            rawOsName.contains("windows") -> "windows" to windowsMajorVersion(rawOsVersion)
-            rawOsName.contains("linux") -> parseEtcOsRelease()
-            else -> rawOsName to rawOsVersion
-        }
+        val (distro, version) =
+            when {
+                rawOsName.contains("mac") -> "mac" to macOsMajorVersion(rawOsVersion)
+                rawOsName.contains("windows") -> "windows" to windowsMajorVersion(rawOsVersion)
+                rawOsName.contains("linux") -> parseEtcOsRelease()
+                else -> rawOsName to rawOsVersion
+            }
         return OSInfo(distro, version, normalizedArch, false)
     }
 
@@ -516,10 +569,12 @@ ${
         if (!file.exists()) return "linux" to System.getProperty("os.version")
 
         val lines = file.readLines()
-        val props = lines.mapNotNull {
-            val parts = it.split("=")
-            if (parts.size == 2) parts[0] to parts[1].trim('"') else null
-        }.toMap()
+        val props =
+            lines
+                .mapNotNull {
+                    val parts = it.split("=")
+                    if (parts.size == 2) parts[0] to parts[1].trim('"') else null
+                }.toMap()
 
         val id = props["ID"] ?: "linux"
         val versionId = props["VERSION_ID"] ?: "unknown"
@@ -532,9 +587,7 @@ ${
      * - Helper function to provide the main macOS version number based upon given full version.
      *
      */
-    fun macOsMajorVersion(version: String): String {
-        return version.split(".").firstOrNull() ?: version
-    }
+    fun macOsMajorVersion(version: String): String = version.split(".").firstOrNull() ?: version
 
     /**
      * Function [windowsMajorVersion]:
@@ -542,12 +595,11 @@ ${
      * - Helper function to provide the main Windows version number based upon given full version.
      *
      */
-    fun windowsMajorVersion(version: String): String {
-        return version.split(".").firstOrNull() ?: version
-    }
+    fun windowsMajorVersion(version: String): String = version.split(".").firstOrNull() ?: version
 }
 
-logger.info("Step 12: Creation of the environment compatibility check convention plugin.")
+logger.info("Step 14: Creation of the environment compatibility check convention plugin.")
+
 abstract class KmpBuildLogicEnvironmentCompatibilityCheckConventionPlugin : Plugin<Settings> {
     private val logger: Logger = Logging.getLogger(javaClass)
     private val posResultString = EnvironmentCompatibilityChecker.POS_RESULT_STRING
@@ -557,26 +609,29 @@ abstract class KmpBuildLogicEnvironmentCompatibilityCheckConventionPlugin : Plug
         val result = EnvironmentCompatibilityChecker.run(target)
         if (result) {
             logger.lifecycle("$posResultString All compatibility checks passed\n")
-        } else  {
+        } else {
             logger.lifecycle("$warnResultString Not all compatibility checks were successful!\n")
         }
     }
 }
 
-logger.info("Step 13: Creation of toolchain checker.")
+logger.info("Step 15: Creation of toolchain checker.")
+
 class ToolchainChecker {
     private val logger: Logger = Logging.getLogger(javaClass)
     private val markString = EnvironmentCompatibilityChecker.MARK_STRING
     private val settingString = EnvironmentCompatibilityChecker.SETTING_STRING
 
-    fun run(settings:Settings) : Boolean {
+    fun run(settings: Settings): Boolean {
         logger.lifecycle("\nFoojay toolchain resolver check.\n")
         val gradleVersion: GradleVersion = GradleVersion.version(settings.gradle.gradleVersion)
         val minVersionWithBuildInFoojay: GradleVersion = GradleVersion.version("8.4")
         val foojayPluginNeeded = gradleVersion < minVersionWithBuildInFoojay
         System.setProperty("foojayPluginNeeded", foojayPluginNeeded.toString())
         if (foojayPluginNeeded) {
-            logger.lifecycle("$settingString Foojay toolchain resolver plugin is needed, because current Gradle version (${gradleVersion}) is < '8.4'.")
+            logger.lifecycle(
+                "$settingString Foojay toolchain resolver plugin is needed, because current Gradle version ($gradleVersion) is < '8.4'.",
+            )
         } else {
             logger.lifecycle("$markString Foojay toolchain resolver plugin is been added by Gradle itself since version '8.4'.")
         }
@@ -584,7 +639,8 @@ class ToolchainChecker {
     }
 }
 
-logger.info("Step 14: Toolchain plugin check creation.")
+logger.info("Step 16: Toolchain plugin check creation.")
+
 abstract class KmpBuildLogicToolchainCheckConventionPlugin : Plugin<Settings> {
     private val logger: Logger = Logging.getLogger(javaClass)
     private val posResultString = EnvironmentCompatibilityChecker.POS_RESULT_STRING
@@ -602,7 +658,8 @@ abstract class KmpBuildLogicToolchainCheckConventionPlugin : Plugin<Settings> {
     }
 }
 
-logger.info("Step 15: Library Selector plugin.")
+logger.info("Step 17: Library Selector plugin.")
+
 abstract class KmpBuildLogicLibrarySelectorConventionPlugin : Plugin<Settings> {
     private val logger: Logger = Logging.getLogger(javaClass)
     private val markString = EnvironmentCompatibilityChecker.MARK_STRING
@@ -611,13 +668,14 @@ abstract class KmpBuildLogicLibrarySelectorConventionPlugin : Plugin<Settings> {
 
     override fun apply(settings: Settings) {
         logger.lifecycle("\nLibrary version selector\n")
-        val libraryVersion = when(versionProfile) {
-            "alpha" -> "Alpha"
-            "beta" ->  "Beta"
-            "rc" -> "Release Candidate"
-            "ga" -> "General Availability"
-            else -> "General Availability"
-        }
+        val libraryVersion =
+            when (versionProfile) {
+                "alpha" -> "Alpha"
+                "beta" -> "Beta"
+                "rc" -> "Release Candidate"
+                "ga" -> "General Availability"
+                else -> "General Availability"
+            }
         logger.lifecycle("$markString The versions library which will be used is: $libraryVersion Version.\n")
         logger.lifecycle("$posResultString Library selection succeeded")
         logger.info("\n")
@@ -625,7 +683,8 @@ abstract class KmpBuildLogicLibrarySelectorConventionPlugin : Plugin<Settings> {
     }
 }
 
-logger.info("Step 16: Jvm Toolchain plugin.")
+logger.info("Step 18: Jvm Toolchain plugin.")
+
 /**
  * Jvm Toolchain convention plugin using System.setProperty to define JVM version.
  */
@@ -662,14 +721,17 @@ abstract class JvmToolchainConventionPlugin : Plugin<Settings> {
     }
 }
 
-logger.info("Step 17: Metadata Verification")
+logger.info("Step 19: Metadata Verification")
+
 /**
  * A Settings plugin which triggers Gradle dependency verification metadata generation,
  * based on changes in version catalog TOML files.
  */
-abstract class MetadataVerificationSettingsPlugin: Plugin<Settings> {
+abstract class MetadataVerificationSettingsPlugin : Plugin<Settings> {
     private val markString = EnvironmentCompatibilityChecker.MARK_STRING
+    private val posResultStringWithReturn = EnvironmentCompatibilityChecker.POS_RESULT_STRING_WITH_RETURN
     private val processString = EnvironmentCompatibilityChecker.PROCESS_STRING
+    private val warnResultStringWithReturn = EnvironmentCompatibilityChecker.WARN_STRING_WITH_RETURN
 
     companion object {
         private var hasRun = false
@@ -677,20 +739,23 @@ abstract class MetadataVerificationSettingsPlugin: Plugin<Settings> {
 
     private val logger = Logging.getLogger(javaClass)
 
-    val catalogFiles = mapOf(
-        "libs.versions.toml" to "ga",
-        "alpha.versions.toml" to "alpha",
-        "beta.versions.toml" to "beta",
-        "rc.versions.toml" to "rc"
-    )
+    private var result = true
+
+    val catalogFiles =
+        mapOf(
+            "libs.versions.toml" to "ga",
+            "alpha.versions.toml" to "alpha",
+            "beta.versions.toml" to "beta",
+            "rc.versions.toml" to "rc",
+        )
 
     override fun apply(settings: Settings) {
-        if (hasRun){
+        logger.lifecycle("\nMetadata verification\n")
+        if (hasRun) {
             logger.lifecycle("Metadata verification already executed; skipping.")
             return
         }
         hasRun = true
-        logger.lifecycle("\nMetadata verification\n")
 
         val root = settings.rootDir
         val verificationFile = root.resolve("../gradle/verification-metadata.xml")
@@ -711,7 +776,7 @@ abstract class MetadataVerificationSettingsPlugin: Plugin<Settings> {
         val gradleNeeds = gradleWrapperTime > verificationTime
         if (gradleNeeds) {
             logger.lifecycle(
-                "$processString Processing is needed for all version catalogs (gradle wrapper changed since last verification)"
+                "$processString Processing is needed for all version catalogs (gradle wrapper changed since last verification)",
             )
         }
 
@@ -724,16 +789,25 @@ abstract class MetadataVerificationSettingsPlugin: Plugin<Settings> {
                 if (gradleNeeds) {
                     logger.lifecycle("$processString Processing is needed $catalogName")
                 } else {
-                    logger.lifecycle("$processString Processing is needed $catalogName (changed since last verification")
+                    logger.lifecycle("$processString Processing is needed $catalogName (changed since last verification)")
                 }
+                result = false
             } else {
                 logger.lifecycle("$markString No need to process $catalogName")
             }
         }
+        if (result) {
+            logger.lifecycle("$posResultStringWithReturn Metadata verification check passed")
+        } else {
+            logger.lifecycle(
+                "$warnResultStringWithReturn Not all Metadata verifications were successful! " +
+                    "There is a need to run the task 'verifyAllVersionsCatalogs'.",
+            )
+        }
     }
 }
 
-logger.info("Step 17: Enabler for running the checkers and selector.")
+logger.info("Step 20: Enabler for running the checkers and selector.")
 gradle.settingsEvaluated {
     apply<KmpBuildLogicEnvironmentCompatibilityCheckConventionPlugin>()
     apply<JvmToolchainConventionPlugin>()
