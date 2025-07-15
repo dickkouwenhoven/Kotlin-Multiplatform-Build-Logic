@@ -24,13 +24,15 @@ dependencyResolutionManagement {
     repositories {
         google()
         gradlePluginPortal()
+        mavenLocal()
         mavenCentral()
     }
 
     val versionProfile = System.getProperty("kmpbuildlogic.properties.version.profile") ?: "ga"
-    val fileName = when(versionProfile) {
+    val fileName =
+        when (versionProfile) {
             "alpha" -> "../gradle/alpha.versions.toml"
-            "beta" ->  "../gradle/beta.versions.toml"
+            "beta" -> "../gradle/beta.versions.toml"
             "rc" -> "../gradle/rc.versions.toml"
             else -> "../gradle/libs.versions.toml"
         }
@@ -43,9 +45,10 @@ dependencyResolutionManagement {
 
 logger.info("Step 2 : 'rootProject name' setting.")
 val mainRootProjectName: String? = System.getProperty("kmpbuildlogic.properties.root.project.name")
-val kmpbuildlogicBuildConventionsProjectName = mainRootProjectName +
-    "-" +
-    "Build-Logic"
+val kmpbuildlogicBuildConventionsProjectName =
+    mainRootProjectName +
+        "-" +
+        "Build-Logic"
 rootProject.name = kmpbuildlogicBuildConventionsProjectName
 
 logger.info("Step 3 : including the module 'build-conventions'.")
