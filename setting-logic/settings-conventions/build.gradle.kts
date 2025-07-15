@@ -30,8 +30,8 @@ plugins {
     // Apply the Kotlin Dsl plugin to add support for Kotlin.
     `kotlin-dsl`
 
-   // Apply the Kotlin serialization plugin to add support for reading/writing from/to a file
-   alias(libs.plugins.jetbrainsKotlinPluginSerialization)
+    // Apply the Kotlin serialization plugin to add support for reading/writing from/to a file
+    alias(libs.plugins.jetbrainsKotlinPluginSerialization)
 }
 
 logger.info("Step 2 : define group name")
@@ -50,9 +50,10 @@ val kmpBuildLogicSettingLogicTestGroup = "KMP Build Logic Setting Logic Test"
 
 logger.info("Step 6 : define task groups variables")
 java {
-    val javaVersion = JavaVersion.toVersion(
-        System.getProperty("org.gradle.jvm.version")
-    )
+    val javaVersion =
+        JavaVersion.toVersion(
+            System.getProperty("org.gradle.jvm.version"),
+        )
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
 }
@@ -60,12 +61,13 @@ java {
 logger.info("Step 7 : testing settings")
 testing {
     suites {
-        val kotlinLanguageVersion: String = providers.gradleProperty("kotlin.language.version").toString()
+        val kotlinLanguageVersion: String = System.getProperty("kotlin.language.version")
 
         // Shared configuration for all test suites
         @Suppress("UnstableApiUsage")
         val sharedConfig: JvmTestSuite.() -> Unit = {
             dependencies {
+                implementation(project())
                 implementation(libs.jetbrainsKotlinTestJunit5)
             }
             targets {
@@ -82,26 +84,28 @@ testing {
 
         // Create a new test suite for Unit tests
         @Suppress("UnstableApiUsage")
-        val settingLogicUnitTest = register<JvmTestSuite>("kmpBuildLogicSettingLogicUnitTest") {
-            description = "Unit tests for the module setting-logic"
-            sharedConfig()
-        }
+        val settingLogicUnitTest =
+            register<JvmTestSuite>("kmpBuildLogicSettingLogicUnitTest") {
+                description = "Unit tests for the module setting-logic"
+                sharedConfig()
+            }
 
         // Create a new test suite for Integration tests
         @Suppress("UnstableApiUsage")
-        val settingLogicIntegrationTest = register<JvmTestSuite>("kmpBuildLogicSettingLogicIntegrationTest") {
-            description = "Integration tests for the module setting-logic"
-            sharedConfig()
-            targets {
-                all {
-                    // This test suite should run after the built-in pluginUnitTest suite has run its tests
-                    testTask.configure {
-                        // shouldRunAfter(settingLogicUnitTest.get().targets.getByName("test").testTask)
-                        shouldRunAfter(settingLogicUnitTest)
+        val settingLogicIntegrationTest =
+            register<JvmTestSuite>("kmpBuildLogicSettingLogicIntegrationTest") {
+                description = "Integration tests for the module setting-logic"
+                sharedConfig()
+                targets {
+                    all {
+                        // This test suite should run after the built-in pluginUnitTest suite has run its tests
+                        testTask.configure {
+                            // shouldRunAfter(settingLogicUnitTest.get().targets.getByName("test").testTask)
+                            shouldRunAfter(settingLogicUnitTest)
+                        }
                     }
                 }
             }
-        }
 
         // Create a new test suite for Functional tests (e.g., TestKit)
         @Suppress("UnstableApiUsage")
@@ -116,7 +120,7 @@ testing {
                 implementation(platform(libs.junitBom))
 
                 runtimeOnly(libs.junitJupiterEngine)
-            }        
+            }
             targets {
                 all {
                     // This test suite should run after the built-in pluginIntegrationTest suite has run its tests
@@ -166,15 +170,16 @@ tasks {
 }
 
 logger.info("Step 11: Creation of a task which runs all test suites (unit, integration, functional")
-val runAllKmpBuildLogicSettingLogicTests = tasks.register("runAllKmpBuildLogicSettingLogicTests") {
-    group = LifecycleBasePlugin.VERIFICATION_GROUP
-    description = "Runs all JVM test suites for setting-logic"
-    dependsOn(
-        "kmpBuildLogicSettingLogicUnitTest",
-        "kmpBuildLogicSettingLogicIntegrationTest",
-        "kmpBuildLogicBuildLogicFunctionalTest"
-    )
-}
+val runAllKmpBuildLogicSettingLogicTests =
+    tasks.register("runAllKmpBuildLogicSettingLogicTests") {
+        group = LifecycleBasePlugin.VERIFICATION_GROUP
+        description = "Runs all JVM test suites for setting-logic"
+        dependsOn(
+            "kmpBuildLogicSettingLogicUnitTest",
+            "kmpBuildLogicSettingLogicIntegrationTest",
+            "kmpBuildLogicBuildLogicFunctionalTest",
+        )
+    }
 
 logger.info("Step 12: Linkage of 'runAllKmpBuildLogicSettingLogicTests' to the general ´test' task")
 tasks.named("test") {
@@ -182,11 +187,12 @@ tasks.named("test") {
 }
 
 logger.info("Step 13: Creation of a verification task for 'runAllKmpBuildLogicSettingLogicTests'")
-val verifyKmpBuildLogicSettingLogicTests = tasks.register("verifyKmpBuildLogicSettingLogicTests") {
-    group = LifecycleBasePlugin.VERIFICATION_GROUP
-    description = "Runs and verifies all setting-logic test suites"
-    dependsOn(runAllKmpBuildLogicSettingLogicTests)
-}
+val verifyKmpBuildLogicSettingLogicTests =
+    tasks.register("verifyKmpBuildLogicSettingLogicTests") {
+        group = LifecycleBasePlugin.VERIFICATION_GROUP
+        description = "Runs and verifies all setting-logic test suites"
+        dependsOn(runAllKmpBuildLogicSettingLogicTests)
+    }
 
 logger.info("Step 14: Linkage of 'verifySettingLogicTests' to the general 'check' task")
 tasks.named("check") {
